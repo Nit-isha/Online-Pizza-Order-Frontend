@@ -11,7 +11,7 @@ export default function Login() {
             {!token &&
                 <form onSubmit={(e) => {
                     e.preventDefault();
-                    const data = new FormData(e.target); //Create actual data from form element //promise
+                    const data = new FormData(e.target);   //Create actual data from form element
                     fetch("http://localhost:9001/login", {
                         method: "POST",
                         body: JSON.stringify({

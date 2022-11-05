@@ -29,7 +29,7 @@ export default function UpdateUsername() {
                     }}>
 
                         <label htmlFor="username">Username</label>
-                        <input type="text" name="username" id="username" required />
+                        <input type="text" name="username" id="username" required autoFocus />
                         <br />
 
                         <input type="submit" value="Update" />

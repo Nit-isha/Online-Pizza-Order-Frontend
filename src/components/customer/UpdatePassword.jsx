@@ -30,7 +30,7 @@ export default function UpdatePassword() {
                     }}>
 
                         <label htmlFor="pass">New Password</label>
-                        <input type="password" name="pass" id="pass" required />
+                        <input type="password" name="pass" id="pass" required autoFocus />
                         <br />
 
                         <input type="submit" value="Update" />
