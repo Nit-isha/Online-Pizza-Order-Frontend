@@ -4,10 +4,7 @@ import { useUser } from "../hooks/useUser";
 
 export default function Login() {
     const { token, login } = useUser();
-
     let navigate = useNavigate();
-    const routeRegister = () => { navigate("/register") }
-    const routeMenu = () => { navigate("/menu") }
 
     return (
         <div className="login">
@@ -28,7 +25,7 @@ export default function Login() {
                         return res.json();
                     }).then((res) => {
                         login(res.token);
-                        routeMenu();
+                        navigate("/menu");
                     })
 
                 }}>
@@ -39,9 +36,10 @@ export default function Login() {
                     <input type="password" name="password" id="password" required />
                     <br />
                     <input type="submit" value="Login" />
+                    <input type="button" value="Back" onClick={() => navigate("/menu")} />
                     <br />
                     Create an account{" "}
-                    <input type="button" value="Signup" onClick={routeRegister} />
+                    <input type="button" value="Signup" onClick={() => navigate("/register")} />
                 </form>
             }
         </div>

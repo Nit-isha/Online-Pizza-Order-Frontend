@@ -2,15 +2,10 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom';
 import { useUser } from "../hooks/useUser";
 
-
 export default function Register() {
     const { token } = useUser();
-
     let navigate = useNavigate();
-    const routeChange = () => {
-        let path = "/login";
-        navigate(path);
-    }
+
     return (
         <div className="register">
             {!token &&
@@ -32,7 +27,7 @@ export default function Register() {
                             headers: {
                                 "content-type": "application/json",
                             },
-                        }).then(() => routeChange);
+                        }).then(() => navigate("/login"));
                     }}
                 >
                     <label htmlFor="name">Name</label>
@@ -60,12 +55,13 @@ export default function Register() {
                     <input type="password" name="password" id="password" required />
                     <br />
                     <input type="submit" value="Signup" />
+                    <input type="button" value="Back" onClick={() => navigate("/menu")} />
                     <br />
                     Have an account?{" "}
                     <input
                         type="button"
                         value="Login"
-                        onClick={routeChange}
+                        onClick={() => navigate("/login")}
                     />
                 </form>
             }

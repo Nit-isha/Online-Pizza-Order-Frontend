@@ -1,26 +1,27 @@
 import React, { useEffect, useState } from 'react'
-// import { useUser } from '../hooks/useUser';
+import { useNavigate } from 'react-router-dom';
+import { useUser } from '../../hooks/useUser';
 
 export default function About() {
     const [userDetails, setUserDetails] = useState({})
-    // const { token } = useUser();
+    const { token } = useUser();
+    let navigate = useNavigate();
 
     useEffect(() => {
-        const token = localStorage.getItem("token");
         fetch("http://localhost:9001/customer/about", {
             method: "GET",
             headers: {
                 "Authorization": "Bearer " + token
             }
-        })
-            .then((res) => res.json())
+        }).then((res) => res.json())
             .then((json) => setUserDetails(json))
 
-    }, [])
+    }, [token])
 
     return (
         <>
             <div className="about">Personal Details</div>
+            <button onClick={() => navigate("/menu")}>Home</button>
             <div>
                 {
                     (() => {
@@ -29,9 +30,12 @@ export default function About() {
                             <article>
                                 <div className="name">Name : {customerName}</div>
                                 <div className="usernam">Username : {username}</div>
-                                <div className="mobile">Mobile num : {customerMobile}</div>
+                                <div className="mobile">Mobile no. : {customerMobile}</div>
                                 <div className="email">Email : {customerEmail}</div>
                                 <div className="address">Address : {customerAddress}</div>
+                                <button onClick={() => navigate("/user/update")}>Update credentials</button>
+                                <button onClick={() => navigate("/user/update_uname")}>Update username</button>
+                                <button onClick={() => navigate("/user/update_pass")}>Update password</button>
                             </article>
                         )
                     })()

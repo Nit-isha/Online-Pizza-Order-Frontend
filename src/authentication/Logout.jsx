@@ -1,5 +1,4 @@
 import { useUser } from "../hooks/useUser";
-
 import React from 'react'
 
 export default function Logout() {

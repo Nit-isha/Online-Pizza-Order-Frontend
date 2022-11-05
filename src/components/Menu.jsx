@@ -6,6 +6,7 @@ import { useUser } from "../hooks/useUser";
 export default function Menu() {
     const [menu, setmenu] = useState([]);
     const { token } = useUser();
+    let navigate = useNavigate();
 
     useEffect(() => {
         fetch("http://localhost:9001/menu", { method: "GET" })
@@ -14,15 +15,13 @@ export default function Menu() {
 
     }, [])
 
-    let navigate = useNavigate();
-    const routeRegister = () => { navigate("/register") }
-    const routeLogin = () => { navigate("/login") }
 
     return (
         <>
             <div>Menu</div>
-            {!token && <button onClick={() => routeLogin()}>Login</button>}
-            {!token && <button onClick={() => routeRegister()}>Signup</button>}
+            {!token && <button onClick={() => navigate("/login")}>Login</button>}
+            {!token && <button onClick={() => navigate("/register")}>Signup</button>}
+            {token && <button onClick={() => navigate("/user/about")}>About</button>}
             <Logout />
 
             <div>
@@ -34,7 +33,7 @@ export default function Menu() {
                             <div className="name">{pizzaName}</div>
                             <div className="desc">{pizzaDescription}</div>
                             <div className="cost">{pizzaCost}</div>
-                            <button>Add to cart</button>
+                            <button id={pizzaId}>Add to cart</button>
                         </article>
                     )
                 })}
