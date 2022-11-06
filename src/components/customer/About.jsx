@@ -1,22 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useUser } from '../../hooks/useUser';
+import useUserInfo from '../../hooks/useUserInfo';
 
 export default function About() {
-    const [userDetails, setUserDetails] = useState({})
-    const { token } = useUser();
+    // const [userDetails, setUserDetails] = useState({})
     let navigate = useNavigate();
-
-    useEffect(() => {
-        fetch("http://localhost:9001/customer/about", {
-            method: "GET",
-            headers: {
-                "Authorization": "Bearer " + token
-            }
-        }).then((res) => res.json())
-            .then((json) => setUserDetails(json))
-
-    }, [token])
+    const info = useUserInfo();
 
     return (
         <>
@@ -25,7 +14,7 @@ export default function About() {
             <div>
                 {
                     (() => {
-                        const { customerName, customerMobile, customerEmail, customerAddress, username } = userDetails;
+                        const { customerName, customerMobile, customerEmail, customerAddress, username } = info;
                         return (
                             <article>
                                 <div className="name">Name : {customerName}</div>

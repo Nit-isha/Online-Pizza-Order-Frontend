@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import Logout from '../authentication/Logout';
+import useLocalStorage from '../hooks/useLocalStorage';
 import { useUser } from "../hooks/useUser";
 
 export default function Menu() {
     const [menu, setmenu] = useState([]);
+    const [cart, setCart] = useLocalStorage("cart", []);
     const { token } = useUser();
     let navigate = useNavigate();
 
@@ -15,7 +17,6 @@ export default function Menu() {
 
     }, [])
 
-
     return (
         <>
             <div>Menu</div>
@@ -25,18 +26,41 @@ export default function Menu() {
             <Logout />
 
             <div>
-                {menu.map((pizza) => {
-                    const { pizzaId, pizzaType, pizzaName, pizzaDescription, pizzaCost } = pizza;
-                    return (
-                        <article key={pizzaId}>
-                            <div className="type">{pizzaType}</div>
-                            <div className="name">{pizzaName}</div>
-                            <div className="desc">{pizzaDescription}</div>
-                            <div className="cost">{pizzaCost}</div>
-                            <button id={pizzaId}>Add to cart</button>
-                        </article>
-                    )
-                })}
+                {
+                    menu.map((pizza) => {
+                        const { pizzaId, pizzaType, pizzaName, pizzaSize, pizzaDescription, pizzaCost } = pizza;
+                        return (
+                            <>
+                                <article key={pizzaId}>
+                                    <div className="type">{pizzaType}</div>
+                                    <div className="name">{pizzaName}</div>
+                                    <div className="size">{pizzaSize}</div>
+                                    <div className="desc">{pizzaDescription}</div>
+                                    <div className="cost">{pizzaCost}</div>
+                                    <button id={pizzaId} onClick={() => setCart([...cart, { pizza }])}>Add to cart</button>
+
+                                </article>
+                            </>
+                        )
+                    })
+                }
+            </div>
+            <br />
+            <div className='cart'>
+                {
+                    cart.map((pizzaSelected) => {
+                        const { pizzaId, pizzaType, pizzaName, pizzaSize, pizzaCost } = pizzaSelected?.pizza;
+                        console.log(pizzaSelected);
+                        return (
+                            <article key={pizzaId}>
+                                <div className="type">{pizzaType}</div>
+                                <div className="name">{pizzaName}</div>
+                                <div className="size">{pizzaSize}</div>
+                                <div className="cost">{pizzaCost}</div>
+                            </article>
+                        )
+                    })
+                }
             </div>
         </>
     )

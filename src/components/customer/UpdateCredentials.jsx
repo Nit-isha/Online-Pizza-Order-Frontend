@@ -1,10 +1,12 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
 import { useUser } from '../../hooks/useUser';
+import useUserInfo from '../../hooks/useUserInfo';
 
 export default function Update() {
     let navigate = useNavigate();
     const { token } = useUser();
+    const info = useUserInfo();
 
     return (
         <>
@@ -33,16 +35,16 @@ export default function Update() {
                     }}>
 
                         <label htmlFor="name">Name</label>
-                        <input type="text" name="name" id="name" required autoFocus />
+                        <input type="text" name="name" id="name" defaultValue={info?.customerName} required autoFocus />
                         <br />
                         <label htmlFor="mobile">Mobile</label>
-                        <input type="tel" name="mobile" id="mobile" pattern="[6-9][0-9]{9}" required />
+                        <input type="tel" name="mobile" id="mobile" defaultValue={info?.customerMobile} pattern="[6-9][0-9]{9}" required />
                         <br />
                         <label htmlFor="email">Email</label>
-                        <input type="email" name="email" id="email" required />
+                        <input type="email" name="email" id="email" defaultValue={info?.customerEmail} required />
                         <br />
                         <label htmlFor="address">Address</label>
-                        <input type="text" name="address" id="address" required />
+                        <input type="text" name="address" id="address" defaultValue={info?.customerAddress} required />
                         <br />
                         <input type="submit" value="Update" />
                         <br />

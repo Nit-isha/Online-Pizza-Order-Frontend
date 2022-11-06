@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { useUser } from '../../hooks/useUser';
 
 export default function UpdatePassword() {
     let navigate = useNavigate();
     const { token } = useUser();
+    const [password, setPassword] = useState("");
+    const [confirmPass, setConfirmPass] = useState("");
 
     return (
         <>
@@ -15,25 +17,36 @@ export default function UpdatePassword() {
                         e.preventDefault();
                         const data = new FormData(e.target);
 
-                        fetch("http://localhost:9001/customer/update_pass", {
-                            method: "PUT",
-                            headers: {
-                                "content-type": "application/json",
-                                "Accept": "application/json",
-                                "Authorization": "Bearer " + token
-                            },
-                            body: JSON.stringify({
-                                "password": data.get("pass")
-                            }),
+                        if (data.get("pass") === data.get("conpass")) {
 
-                        }).then(() => navigate("/user/about"))
-                    }}>
+                            fetch("http://localhost:9001/customer/update_pass", {
+                                method: "PUT",
+                                headers: {
+                                    "content-type": "application/json",
+                                    "Accept": "application/json",
+                                    "Authorization": "Bearer " + token
+                                },
+                                body: JSON.stringify({
+                                    "password": data.get("pass")
+                                }),
+
+                            }).then(() => navigate("/user/about"))
+                        }
+                    }}
+                    >
 
                         <label htmlFor="pass">New Password</label>
-                        <input type="password" name="pass" id="pass" required autoFocus />
+                        <input type="password" name="pass" id="pass" onChange={(e) => setPassword(e.target.value)} value={password} required />
                         <br />
-
-                        <input type="submit" value="Update" />
+                        <label htmlFor="conpass">Confirm Password</label>
+                        <input type="password" name="conpass" id="conpass" onChange={(e) => setConfirmPass(e.target.value)} value={confirmPass} required />
+                        <br />
+                        <p id="check">
+                            {
+                                (password && confirmPass && password !== confirmPass) && "Password doesn't match."
+                            }
+                        </p>
+                        <input type="submit" value="Update" disabled={password !== confirmPass} />
                         <br />
                         <input type="button" value="Back" onClick={() => navigate("/user/about")} />
                     </form>
