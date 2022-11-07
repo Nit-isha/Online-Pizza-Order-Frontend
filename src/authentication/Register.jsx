@@ -27,7 +27,8 @@ export default function Register() {
                             headers: {
                                 "content-type": "application/json",
                             },
-                        }).then(() => navigate("/login"));
+                        }).then(res => console.log(res)).then(() => navigate("/login"))
+                            .catch(err => console.log(err));
                     }}
                 >
                     <label htmlFor="name">Name</label>

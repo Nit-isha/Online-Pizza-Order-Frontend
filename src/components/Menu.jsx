@@ -50,7 +50,6 @@ export default function Menu() {
                 {
                     cart.map((pizzaSelected) => {
                         const { pizzaId, pizzaType, pizzaName, pizzaSize, pizzaCost } = pizzaSelected?.pizza;
-                        console.log(pizzaSelected);
                         return (
                             <article key={pizzaId}>
                                 <div className="type">{pizzaType}</div>

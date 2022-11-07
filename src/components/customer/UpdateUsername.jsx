@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useUser } from '../../hooks/useUser';
 
 export default function UpdateUsername() {
     let navigate = useNavigate();
     const { token, logout } = useUser();
+    const [validateUserName, setValidateUserName] = useState();
+
     return (
         <>
             <div>Update Username</div>
@@ -25,7 +27,20 @@ export default function UpdateUsername() {
                                 "username": data.get("username")
                             }),
 
-                        }).then(logout).then(() => navigate("/menu"))
+                        })
+                            .then(async res => {
+                                if (res.ok) {
+                                    console.log(res);
+                                    logout();
+                                    navigate("/menu");
+                                    alert("Username successfully updated.. Please Login again to continue");
+                                }
+                                else {
+                                    const error = await res.json();
+                                    throw Error(error.msg);
+                                }
+                            })
+                            .catch(err => setValidateUserName(err.message))
                     }}>
 
                         <label htmlFor="username">Username</label>
@@ -35,6 +50,8 @@ export default function UpdateUsername() {
                         <input type="submit" value="Update" />
                         <br />
                         <input type="button" value="Back" onClick={() => navigate("/user/about")} />
+                        <br />
+                        <p id='validateUserName'>{validateUserName}</p>
                     </form>
                 }
             </div>

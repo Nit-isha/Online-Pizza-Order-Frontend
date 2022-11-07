@@ -46,7 +46,7 @@ export default function UpdatePassword() {
                                 (password && confirmPass && password !== confirmPass) && "Password doesn't match."
                             }
                         </p>
-                        <input type="submit" value="Update" disabled={password !== confirmPass} />
+                        <input type="submit" value="Update" disabled={!password || !confirmPass || password !== confirmPass} />
                         <br />
                         <input type="button" value="Back" onClick={() => navigate("/user/about")} />
                     </form>
