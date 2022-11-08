@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { useUser } from "../hooks/useUser";
 
 export default function Register() {
     const { token } = useUser();
+    const [error, setError] = useState();
     let navigate = useNavigate();
 
     return (
@@ -27,8 +28,18 @@ export default function Register() {
                             headers: {
                                 "content-type": "application/json",
                             },
-                        }).then(res => console.log(res)).then(() => navigate("/login"))
-                            .catch(err => console.log(err));
+                        })
+                            .then(async res => {
+                                if (res.ok) {
+                                    console.log(res);
+                                    navigate("/login");
+                                }
+                                else {
+                                    const error = await res.json();
+                                    throw Error(error.msg);
+                                }
+                            })
+                            .catch(err => setError(err.message));
                     }}
                 >
                     <label htmlFor="name">Name</label>
@@ -57,6 +68,8 @@ export default function Register() {
                     <br />
                     <input type="submit" value="Signup" />
                     <input type="button" value="Back" onClick={() => navigate("/menu")} />
+                    <br />
+                    <p id="error">{error}</p>
                     <br />
                     Have an account?{" "}
                     <input

@@ -25,9 +25,8 @@ export default function Login() {
                         },
                     })
                         .then(res => {
-                            console.log(res);
                             if (!res.ok) {
-                                throw Error("Invalid Username or Password");
+                                throw Error("Invalid Username or Password.");
                             }
                             else {
                                 return res.json();
