@@ -13,6 +13,7 @@ export default function Login() {
                 <form onSubmit={(e) => {
                     e.preventDefault();
                     const data = new FormData(e.target);   //Create actual data from form element
+
                     fetch("http://localhost:9001/login", {
                         method: "POST",
                         body: JSON.stringify({
@@ -24,6 +25,7 @@ export default function Login() {
                         },
                     })
                         .then(res => {
+                            console.log(res);
                             if (!res.ok) {
                                 throw Error("Invalid Username or Password");
                             }

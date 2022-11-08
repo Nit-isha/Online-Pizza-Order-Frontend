@@ -1,7 +1,7 @@
 import { createBrowserRouter, Navigate } from "react-router-dom";
 import Login from "../authentication/Login";
 import Register from "../authentication/Register";
-import Menu from "../components/Menu";
+import Menu from "../components/menu/Menu";
 import About from "../components/customer/About";
 import UpdateCredentials from "../components/customer/UpdateCredentials";
 import UpdatePassword from "../components/customer/UpdatePassword";

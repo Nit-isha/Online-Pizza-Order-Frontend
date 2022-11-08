@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import useUserInfo from '../../hooks/useUserInfo';
 
 export default function About() {
-    // const [userDetails, setUserDetails] = useState({})
     let navigate = useNavigate();
     const info = useUserInfo();
 
@@ -18,7 +17,7 @@ export default function About() {
                         return (
                             <article>
                                 <div className="name">Name : {customerName}</div>
-                                <div className="usernam">Username : {username}</div>
+                                <div className="username">Username : {username}</div>
                                 <div className="mobile">Mobile no. : {customerMobile}</div>
                                 <div className="email">Email : {customerEmail}</div>
                                 <div className="address">Address : {customerAddress}</div>
