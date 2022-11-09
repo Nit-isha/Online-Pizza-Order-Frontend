@@ -18,6 +18,8 @@ export default function Menu() {
             .then((json) => { setmenu(json) })
     }, [])
 
+    console.log(menu);
+
     const filteredPizza = menu.filter((pizza) => {
         if (!filter || filter === "none") {
             return true;
@@ -74,7 +76,7 @@ export default function Menu() {
                                     <div className="pizzasize">{pizzaSize}</div>
                                     <div className="pizzadesc">{pizzaDescription}</div>
                                     <div className="pizzacost">{pizzaCost}</div>
-                                    <button id={pizzaId} onClick={() => setCart([...cart, { pizza }])}>Add to cart</button>
+                                    <button id={pizzaId} onClick={() => setCart([...cart, pizza])}>Add to cart</button>
                                 </article>
                             </>
                         )
@@ -84,7 +86,7 @@ export default function Menu() {
             <br />
             <div className='cartList'>
                 {cart.map((pizzaSelected) => {
-                    const { pizzaId: id, pizzaType: type, pizzaName: name, pizzaSize: size, pizzaCost: cost } = pizzaSelected?.pizza;
+                    const { pizzaId: id, pizzaType: type, pizzaName: name, pizzaSize: size, pizzaCost: cost } = pizzaSelected;
                     return (
                         <article key={id}>
                             <div className="cartType">{type}</div>

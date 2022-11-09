@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import useLocalStorage from '../hooks/useLocalStorage'
-import { useUser } from '../hooks/useUser';
 
 export default function Cart() {
     const [cart, setCart] = useLocalStorage("cart", []);
@@ -9,7 +8,6 @@ export default function Cart() {
     const [coupon, setCoupon] = useState([]);
     let subTotal = 0;
     let navigate = useNavigate();
-    // const { token } = useUser();
 
     useEffect(() => {
         fetch("http://localhost:9001/coupon", { method: "GET" })
@@ -23,7 +21,7 @@ export default function Cart() {
             <div className="content">
                 {
                     cart.map(pizzaList => {
-                        const { pizzaId, pizzaType, pizzaName, pizzaSize, pizzaDescription, pizzaCost } = pizzaList?.pizza;
+                        const { pizzaId, pizzaType, pizzaName, pizzaSize, pizzaDescription, pizzaCost } = pizzaList;
                         subTotal += pizzaCost;
                         return (
                             <article key={pizzaId}>
@@ -69,7 +67,7 @@ export default function Cart() {
                     <div className="discount">-</div>
                     <label htmlFor="grandTotal">Grand Total</label>
                     <div className="grandTotal">{subTotal}</div>
-                    <button onClick={() => navigate("/payment")}>Place Order</button>
+                    <button onClick={() => navigate("/payment", subTotal = { subTotal })}>Place Order</button>
                 </div>
             </div>
         </>
