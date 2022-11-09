@@ -8,6 +8,7 @@ export default function Menu() {
     const [menu, setmenu] = useState([]);
     const [cart, setCart] = useLocalStorage("cart", []);
     const [filter, setFilter] = useState();
+    const [filterType, setFilterType] = useState();
     const { token } = useUser();
     let navigate = useNavigate();
 
@@ -24,6 +25,9 @@ export default function Menu() {
         if (pizza.pizzaCost >= parseInt(filter.split("_")[0]) && pizza.pizzaCost < parseInt(filter.split("_")[1])) {
             return true;
         }
+    }).filter((pizza) => {
+        if (pizza.pizzaType === filterType) { return true }
+        if (!filterType || filterType === "none") { return true }
     })
 
     return (
@@ -36,16 +40,26 @@ export default function Menu() {
 
             <div className="filterPizza">
                 {
-                    <form>
-                        <label for="filterByCost">Filter by Price: </label>
-                        <select name="filterByCost" id="filterByCost" onChange={(e) => setFilter(e.target.value)} value={filter}>
-                            <option value="none">All</option>
-                            <option value="0_300">below 300</option>
-                            <option value="300_600">300 - 600</option>
-                            <option value="600_900">600 - 900</option>
-                            <option value="900_2000">900 and above</option>
-                        </select>
-                    </form>
+                    <>
+                        <form>
+                            <label for="filterByCost">Filter by Price: </label>
+                            <select name="filterByCost" id="filterByCost" onChange={(e) => setFilter(e.target.value)} value={filter}>
+                                <option value="none">All</option>
+                                <option value="0_300">below 300</option>
+                                <option value="300_600">300 - 600</option>
+                                <option value="600_900">600 - 900</option>
+                                <option value="900_2000">900 and above</option>
+                            </select>
+                        </form>
+                        <form>
+                            <label for="filterByType">Filter by Type: </label>
+                            <select name="filterByType" id="filterByType" onChange={(e) => setFilterType(e.target.value)} value={filterType}>
+                                <option value="none">All</option>
+                                <option value="Veg">Veg</option>
+                                <option value="Non-Veg">Non-Veg</option>
+                            </select>
+                        </form>
+                    </>
                 }
             </div>
             <div>
