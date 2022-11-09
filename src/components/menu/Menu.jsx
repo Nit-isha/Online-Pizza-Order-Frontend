@@ -77,10 +77,10 @@ export default function Menu() {
                             <div className="cartName">{name}</div>
                             <div className="cartSize">{size}</div>
                             <div className="cartCost">{cost}</div>
-
                         </article>
                     )
                 })}
+                <button id='checkout' onClick={() => navigate("/cart")}>Checkout</button>
             </div>
         </>
     )
