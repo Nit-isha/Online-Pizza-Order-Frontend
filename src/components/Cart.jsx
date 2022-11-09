@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 import useLocalStorage from '../hooks/useLocalStorage'
 import { useUser } from '../hooks/useUser';
 
@@ -6,28 +7,24 @@ export default function Cart() {
     const [cart, setCart] = useLocalStorage("cart", []);
     const [check, setCheck] = useState(false);
     const [coupon, setCoupon] = useState([]);
-    const { token } = useUser();
+    let subTotal = 0;
+    let navigate = useNavigate();
+    // const { token } = useUser();
 
     useEffect(() => {
-        fetch("http://localhost:9001/coupon", {
-            method: "GET",
-            headers: {
-                // "Authorization": "Bearer " + token
-            }
-        })
+        fetch("http://localhost:9001/coupon", { method: "GET" })
             .then(res => res.json())
             .then(json => setCoupon(json))
     }, [])
 
-    const res = Array.from(new Set(cart)).map(obj =>
-        ({ pizzobj: obj.pizza, quantity: cart.filter(i => i.pizza.pizzaId === obj.pizza.pizzaId).length }))
-    console.log(res);
     return (
         <>
+            <button onClick={() => navigate("/menu")}>Menu</button>
             <div className="content">
                 {
                     cart.map(pizzaList => {
                         const { pizzaId, pizzaType, pizzaName, pizzaSize, pizzaDescription, pizzaCost } = pizzaList?.pizza;
+                        subTotal += pizzaCost;
                         return (
                             <article key={pizzaId}>
                                 <div className="name">{pizzaName}</div>
@@ -62,8 +59,18 @@ export default function Cart() {
                             </>
                         )
                     })
-
                 }
+            </div>
+            <div className="total">
+                < div >
+                    <label htmlFor="subtotal">Sub Total</label>
+                    <div className="subtotal">{subTotal}</div>
+                    <label htmlFor="discount">Discount</label>
+                    <div className="discount">-</div>
+                    <label htmlFor="grandTotal">Grand Total</label>
+                    <div className="grandTotal">{subTotal}</div>
+                    <button onClick={() => navigate("/payment")}>Place Order</button>
+                </div>
             </div>
         </>
     )
