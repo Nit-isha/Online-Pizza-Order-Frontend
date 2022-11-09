@@ -38,6 +38,8 @@ export default function Menu() {
             {!token && <button onClick={() => navigate("/login")}>Login</button>}
             {!token && <button onClick={() => navigate("/register")}>Signup</button>}
             {token && <button onClick={() => navigate("/user/about")}>About</button>}
+            {token && <button onClick={() => navigate("/orders")}>Orders</button>}
+
             <Logout />
 
             <div className="filterPizza">
@@ -96,7 +98,7 @@ export default function Menu() {
                         </article>
                     )
                 })}
-                <button id='checkout' onClick={() => navigate("/cart")}>Checkout</button>
+                <button id='checkout' onClick={() => navigate("/cart")} disabled={cart.length === 0}>Checkout</button>
             </div>
         </>
     )

@@ -8,6 +8,8 @@ import UpdatePassword from "../components/customer/UpdatePassword";
 import UpdateUsername from "../components/customer/UpdateUsername";
 import Cart from "../components/Cart";
 import Payment from "../components/Payment";
+import Orders from "../components/order-history/Orders";
+import OrderById from "../components/order-history/OrderById";
 
 export default createBrowserRouter([
 	{ path: "/", element: <Navigate to="/menu" replace /> },
@@ -20,4 +22,6 @@ export default createBrowserRouter([
 	{ path: "/user/update_uname", element: <UpdateUsername /> },
 	{ path: "/cart", element: <Cart /> },
 	{ path: "/payment", element: <Payment /> },
+	{ path: "/orders", element: <Orders /> },
+	{ path: "/orders/:orderId", element: <OrderById /> },
 ]);

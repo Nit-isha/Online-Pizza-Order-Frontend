@@ -9,8 +9,8 @@ export default function Payment() {
     const info = useUserInfo();
     const { token } = useUser()
     let navigate = useNavigate();
-    const [transactionMode, setTransactionMode] = useState();
-    const [orderType, setOrderType] = useState();
+    const [transactionMode, setTransactionMode] = useState("Cash On Delivery");
+    const [orderType, setOrderType] = useState("Home Delivery");
     let subTotal = 0;
 
     cart.map(pizza => { subTotal += pizza.pizzaCost });
@@ -28,7 +28,10 @@ export default function Payment() {
                 // "couponName": "null",
                 "pizzaList": cart
             })
-        }).then(() => alert("Order placed Succesfully"));
+        })
+            .then(() => alert("Order placed Succesfully"))
+            .then(() => localStorage.removeItem("cart"))
+            .then(() => navigate("/menu"))
     }
 
     return (
@@ -75,6 +78,7 @@ export default function Payment() {
                         none
                     </div>
                     <button type='submit' onClick={confirmOrder}>Confirm Order</button>
+
                 </div>
             }
             {!token &&
