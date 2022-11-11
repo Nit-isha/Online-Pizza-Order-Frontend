@@ -4,6 +4,7 @@ import useLocalStorage from '../hooks/useLocalStorage';
 import { useUser } from '../hooks/useUser';
 import { toast } from 'react-toastify';
 import useUserInfo from '../hooks/useUserInfo';
+import { FaRupeeSign } from 'react-icons/fa';
 
 export default function Payment() {
     const [cart, setCart] = useLocalStorage("cart", []);
@@ -72,7 +73,7 @@ export default function Payment() {
                     </div>
                     <div className="totalCost">
                         <strong>Sub Total</strong><br />
-                        {subTotal}
+                        <FaRupeeSign />{subTotal}
                     </div>
                     <div className="couponName">
                         <strong>Coupon applied</strong><br />
@@ -116,7 +117,7 @@ export default function Payment() {
                     </div>
                     <div className="totalCost">
                         <strong>Sub Total</strong><br />
-                        {subTotal}
+                        <FaRupeeSign />{subTotal}
                     </div>
                     <div className="couponName">
                         <strong>Coupon applied</strong><br />

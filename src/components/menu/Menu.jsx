@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import Logout from '../../authentication/Logout';
 import useLocalStorage from '../../hooks/useLocalStorage';
 import { useUser } from "../../hooks/useUser";
+import { FaRupeeSign } from 'react-icons/fa';
 
 export default function Menu() {
     const [menu, setmenu] = useState([]);
@@ -98,7 +99,7 @@ export default function Menu() {
                                     <div className="pizzaname">{pizzaName}</div>
                                     <div className="pizzasize">{pizzaSize}</div>
                                     <div className="pizzadesc">{pizzaDescription}</div>
-                                    <div className="pizzacost">{pizzaCost}</div>
+                                    <div className="pizzacost"><FaRupeeSign />{pizzaCost}</div>
                                     <button id={pizzaId} onClick={() => setCart([...cart, pizza])}>Add to cart</button>
                                 </article>
                             </>
@@ -115,7 +116,7 @@ export default function Menu() {
                             <div className="cartType">{type}</div>
                             <div className="cartName">{name}</div>
                             <div className="cartSize">{size}</div>
-                            <div className="cartCost">{cost}</div>
+                            <div className="cartCost"><FaRupeeSign />{cost}</div>
                             <button id={id} onClick={() => {
                                 removeFromCart(pizzaSelected);
                                 window.location.reload(false);

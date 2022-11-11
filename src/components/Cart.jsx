@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import useLocalStorage from '../hooks/useLocalStorage'
+import { FaRupeeSign } from 'react-icons/fa';
 
 export default function Cart() {
     const [cart, setCart] = useLocalStorage("cart", []);
@@ -37,7 +38,7 @@ export default function Cart() {
                                 <div className="size">{pizzaSize}</div>
                                 <div className="type">{pizzaType}</div>
                                 <div className="desc">{pizzaDescription}</div>
-                                <div className="cost">{pizzaCost}</div>
+                                <div className="cost"><FaRupeeSign />{pizzaCost}</div>
                                 <button id={pizzaId} onClick={() => {
                                     removeFromCart(pizzaList);
                                     window.location.reload(false);
@@ -74,11 +75,11 @@ export default function Cart() {
             <div className="total">
                 < div >
                     <label htmlFor="subtotal">Sub Total</label>
-                    <div className="subtotal">{subTotal}</div>
+                    <div className="subtotal"><FaRupeeSign />{subTotal}</div>
                     <label htmlFor="discount">Discount</label>
                     <div className="discount">-</div>
                     <label htmlFor="grandTotal">Grand Total</label>
-                    <div className="grandTotal">{subTotal}</div>
+                    <div className="grandTotal"><FaRupeeSign />{subTotal}</div>
                     <button onClick={() => navigate("/payment", subTotal = { subTotal })}>Place Order</button>
                 </div>
             </div>

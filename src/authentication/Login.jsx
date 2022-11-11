@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { useUser } from "../hooks/useUser";
+import { toast } from 'react-toastify';
 
 export default function Login() {
     const { token, login } = useUser();
@@ -54,6 +55,7 @@ export default function Login() {
                     <input type="button" value="Signup" onClick={() => navigate("/register")} />
                 </form>
             }
+
         </div >
     )
 }

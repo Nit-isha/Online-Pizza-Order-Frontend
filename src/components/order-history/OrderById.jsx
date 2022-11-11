@@ -4,6 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useUser } from '../../hooks/useUser';
+import { FaRupeeSign } from 'react-icons/fa';
 
 export default function OrderById() {
     const { orderId } = useParams();
@@ -60,8 +61,6 @@ export default function OrderById() {
 
                 }}>Cancel Order</button>}
 
-                {time && <button onClick={() => navigate("/orders")}>Update Order</button>}
-
                 <div className="id">Booking Id: {bookingOrderId}</div>
                 <div className="date">Order Date: {orderDate}</div>
                 <div className="transmode">Transaction Mode: {transactionMode}</div>
@@ -79,7 +78,7 @@ export default function OrderById() {
                                 <div className="pizzaName">Pizza Name: {pizzaName}</div><br />
                                 <div className="pizzaSize">Pizza Size: {pizzaSize}</div><br />
                                 <div className="pizzaDescription">Pizza Description: {pizzaDescription}</div><br />
-                                <div className="pizzaCost">Pizza Cost: {pizzaCost}</div><br />
+                                <div className="pizzaCost">Pizza Cost: <FaRupeeSign />{pizzaCost}</div><br />
                             </div>
                         )
                     })
