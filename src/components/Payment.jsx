@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 import useUserInfo from '../hooks/useUserInfo';
 import { FaRupeeSign } from 'react-icons/fa';
 
-export default function Payment() {
+export default function Payment({ props }) {
     const [cart, setCart] = useLocalStorage("cart", []);
     const info = useUserInfo();
     const { token } = useUser()
@@ -77,7 +77,7 @@ export default function Payment() {
                     </div>
                     <div className="couponName">
                         <strong>Coupon applied</strong><br />
-                        none
+                        {/* {props.discount} */}
                     </div>
                     <button type='submit' onClick={confirmOrder}>Confirm Order</button>
 
