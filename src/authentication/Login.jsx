@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { useUser } from "../hooks/useUser";
-import { toast } from 'react-toastify';
 
 export default function Login() {
     const { token, login } = useUser();
@@ -9,7 +8,7 @@ export default function Login() {
     let navigate = useNavigate();
 
     return (
-        <div className="login">
+        <div className="login-container">
             {!token &&
                 <form onSubmit={(e) => {
                     e.preventDefault();
@@ -39,20 +38,19 @@ export default function Login() {
                         }).catch(err => setValidateUser(err.message))
 
                 }}>
-                    <input type="button" value="Back" onClick={() => navigate(-1)} /><br />
-                    <label htmlFor="userName">User Name</label>
-                    <input type="text" name="userName" id="userName" required autoFocus />
+                    <label htmlFor="userName" id="login-label-username" >User Name</label>
+                    <input type="text" name="userName" id="login-username" required autoFocus />
                     <br />
 
-                    <label htmlFor="password">Password</label>
-                    <input type="password" name="password" id="password" required />
+                    <label htmlFor="password" id="login-label-password" >Password</label>
+                    <input type="password" name="password" id="login-password" required />
                     <br />
-                    <input type="submit" value="Login" /><br />
-                    <input type="button" value="Explore menu" onClick={() => navigate("/menu")} />
+                    <input type="submit" value="Login" id="login-submit-button" /><br />
+                    <input type="button" value="Explore menu" id="login-navigate-button" onClick={() => navigate("/menu")} />
                     <br />
-                    <p id='validateUser'>{validateUser}</p>
+                    <p id='login-validate-user-error'>{validateUser}</p>
                     Create an account{" "}
-                    <input type="button" value="Signup" onClick={() => navigate("/register")} />
+                    <input type="button" value="Signup" id="login-sign-button" onClick={() => navigate("/register")} />
                 </form>
             }
 

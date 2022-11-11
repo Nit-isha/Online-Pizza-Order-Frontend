@@ -10,7 +10,6 @@ export default function OrderById() {
     const { orderId } = useParams();
     const { token } = useUser();
     const [order, setOrder] = useState({});
-    const [cancelStatus, setCancelStatus] = useState();
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -58,7 +57,7 @@ export default function OrderById() {
                 {time && <button onClick={() => {
                     cancelOrder(bookingOrderId);
                     navigate("/orders");
-
+                    window.location.reload(false);
                 }}>Cancel Order</button>}
 
                 <div className="id">Booking Id: {bookingOrderId}</div>

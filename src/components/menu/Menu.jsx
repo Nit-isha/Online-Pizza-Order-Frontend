@@ -95,7 +95,7 @@ export default function Menu() {
                                 <article key={pizzaId}>
 
                                     <div className="image"><img src={`/images/${pizzaId}.jpg`}></img></div>
-                                    <div className="pizzatype">{pizzaType}</div>
+                                    <div className="pizzatype"><img src={`/images/${pizzaType}.jpg`}></img></div>
                                     <div className="pizzaname">{pizzaName}</div>
                                     <div className="pizzasize">{pizzaSize}</div>
                                     <div className="pizzadesc">{pizzaDescription}</div>
