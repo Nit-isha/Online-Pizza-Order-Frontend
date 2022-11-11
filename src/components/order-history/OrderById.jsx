@@ -1,11 +1,15 @@
+import { differenceInMinutes } from 'date-fns/esm';
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { useUser } from '../../hooks/useUser';
 
 export default function OrderById() {
     const { orderId } = useParams();
     const { token } = useUser();
     const [order, setOrder] = useState({});
+    const [cancelStatus, setCancelStatus] = useState();
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -20,12 +24,43 @@ export default function OrderById() {
             .then(json => setOrder(json))
     }, [])
 
+    const cancelOrder = (id) => {
+        fetch(`http://localhost:9001/orders/${id}`, {
+            method: "DELETE",
+            headers: {
+                "content-type": "application/json",
+                "Authorization": "Bearer " + token
+            }
+        })
+            .then(async res => {
+                if (res.ok) {
+                    toast.success("Order cancelled Successfully");
+                }
+                else {
+                    const error = await res.json();
+                    throw Error(error.msg);
+                }
+            }).catch(err => toast.error(err.message));
+    }
+
     if (order !== {}) {
         const { bookingOrderId, orderDate, transactionMode, quantity, totalCost, couponName, orderType } = order;
+        if (orderDate) {
+            const order_date = new Date(orderDate);
+            var time = differenceInMinutes(new Date(), order_date) <= 15;
+        }
         return (
             <>
                 <button onClick={() => navigate("/menu")}>Menu</button>
                 <button onClick={() => navigate("/orders")}>Back</button>
+                <br />
+                {time && <button onClick={() => {
+                    cancelOrder(bookingOrderId);
+                    navigate("/orders");
+
+                }}>Cancel Order</button>}
+
+                {time && <button onClick={() => navigate("/orders")}>Update Order</button>}
 
                 <div className="id">Booking Id: {bookingOrderId}</div>
                 <div className="date">Order Date: {orderDate}</div>

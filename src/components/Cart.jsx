@@ -15,6 +15,14 @@ export default function Cart() {
             .then(json => setCoupon(json))
     }, [])
 
+    const removeFromCart = (pizza) => {
+        let index = cart.indexOf(pizza);
+        if (index > -1) {
+            cart.splice(index, 1);
+            setCart(cart);
+        }
+    }
+
     return (
         <>
             <button onClick={() => navigate("/menu")}>Menu</button>
@@ -30,6 +38,10 @@ export default function Cart() {
                                 <div className="type">{pizzaType}</div>
                                 <div className="desc">{pizzaDescription}</div>
                                 <div className="cost">{pizzaCost}</div>
+                                <button id={pizzaId} onClick={() => {
+                                    removeFromCart(pizzaList);
+                                    window.location.reload(false);
+                                }}>Remove</button>
                             </article>
                         )
                     })

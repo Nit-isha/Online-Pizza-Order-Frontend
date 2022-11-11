@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { useUser } from '../../hooks/useUser';
 
 export default function UpdateUsername() {
@@ -33,14 +34,18 @@ export default function UpdateUsername() {
                                     console.log(res);
                                     logout();
                                     navigate("/menu");
-                                    alert("Username successfully updated.. Please Login again to continue");
+                                    toast.success("Username Successfully Updated.");
+                                    toast.info("Please login to continue.")
                                 }
                                 else {
                                     const error = await res.json();
                                     throw Error(error.msg);
                                 }
                             })
-                            .catch(err => setValidateUserName(err.message))
+                            .catch(err => {
+                                setValidateUserName(err.message);
+                                toast.error(err.message);
+                            })
                     }}>
 
                         <label htmlFor="username">Username</label>

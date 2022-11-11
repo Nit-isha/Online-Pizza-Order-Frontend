@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import useLocalStorage from '../hooks/useLocalStorage';
 import { useUser } from '../hooks/useUser';
+import { toast } from 'react-toastify';
 import useUserInfo from '../hooks/useUserInfo';
 
 export default function Payment() {
@@ -29,7 +30,7 @@ export default function Payment() {
                 "pizzaList": cart
             })
         })
-            .then(() => alert("Order placed Succesfully"))
+            .then(() => toast.success("Order Placed Succesfully"))
             .then(() => localStorage.removeItem("cart"))
             .then(() => navigate("/menu"))
     }

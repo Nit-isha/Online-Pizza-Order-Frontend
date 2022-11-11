@@ -9,6 +9,7 @@ export default function Menu() {
     const [cart, setCart] = useLocalStorage("cart", []);
     const [filter, setFilter] = useState();
     const [filterType, setFilterType] = useState();
+    const [filterSize, setFilterSize] = useState();
     const { token } = useUser();
     let navigate = useNavigate();
 
@@ -17,8 +18,6 @@ export default function Menu() {
             .then((res) => res.json())
             .then((json) => { setmenu(json) })
     }, [])
-
-    console.log(menu);
 
     const filteredPizza = menu.filter((pizza) => {
         if (!filter || filter === "none") {
@@ -30,7 +29,18 @@ export default function Menu() {
     }).filter((pizza) => {
         if (pizza.pizzaType === filterType) { return true }
         if (!filterType || filterType === "none") { return true }
+    }).filter((pizza) => {
+        if (pizza.pizzaSize === filterSize) { return true }
+        if (!filterSize || filterSize === "none") { return true }
     })
+
+    const removeFromCart = (pizza) => {
+        let index = cart.indexOf(pizza);
+        if (index > -1) {
+            cart.splice(index, 1);
+            setCart(cart);
+        }
+    }
 
     return (
         <>
@@ -63,6 +73,15 @@ export default function Menu() {
                                 <option value="Non-Veg">Non-Veg</option>
                             </select>
                         </form>
+                        <form>
+                            <label for="filterBySize">Filter by Size: </label>
+                            <select name="filterBySize" id="filterBySize" onChange={(e) => setFilterSize(e.target.value)} value={filterSize}>
+                                <option value="none">All</option>
+                                <option value="Regular">Regular</option>
+                                <option value="Medium">Medium</option>
+                                <option value="Large">Large</option>
+                            </select>
+                        </form>
                     </>
                 }
             </div>
@@ -73,6 +92,8 @@ export default function Menu() {
                         return (
                             <>
                                 <article key={pizzaId}>
+
+                                    <div className="image"><img src={`/images/${pizzaId}.jpg`}></img></div>
                                     <div className="pizzatype">{pizzaType}</div>
                                     <div className="pizzaname">{pizzaName}</div>
                                     <div className="pizzasize">{pizzaSize}</div>
@@ -95,6 +116,10 @@ export default function Menu() {
                             <div className="cartName">{name}</div>
                             <div className="cartSize">{size}</div>
                             <div className="cartCost">{cost}</div>
+                            <button id={id} onClick={() => {
+                                removeFromCart(pizzaSelected);
+                                window.location.reload(false);
+                            }}>Remove</button>
                         </article>
                     )
                 })}

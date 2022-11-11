@@ -1,5 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { useUser } from '../../hooks/useUser';
 import useUserInfo from '../../hooks/useUserInfo';
 
@@ -31,7 +32,9 @@ export default function Update() {
                                 "customerAddress": data.get("address")
                             }),
 
-                        }).then(() => navigate("/user/about"))
+                        })
+                            .then(() => navigate("/user/about"))
+                            .then(() => toast.success("Credentials Updated Successfully."))
                     }}>
 
                         <label htmlFor="name">Name</label>

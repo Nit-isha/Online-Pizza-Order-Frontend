@@ -34,10 +34,11 @@ export default function Login() {
                         })
                         .then(res => {
                             login(res.token);
-                            navigate("/menu");
+                            navigate(-1);
                         }).catch(err => setValidateUser(err.message))
 
                 }}>
+                    <input type="button" value="Back" onClick={() => navigate(-1)} /><br />
                     <label htmlFor="userName">User Name</label>
                     <input type="text" name="userName" id="userName" required autoFocus />
                     <br />
@@ -45,8 +46,8 @@ export default function Login() {
                     <label htmlFor="password">Password</label>
                     <input type="password" name="password" id="password" required />
                     <br />
-                    <input type="submit" value="Login" />
-                    <input type="button" value="Back" onClick={() => navigate("/menu")} />
+                    <input type="submit" value="Login" /><br />
+                    <input type="button" value="Explore menu" onClick={() => navigate("/menu")} />
                     <br />
                     <p id='validateUser'>{validateUser}</p>
                     Create an account{" "}

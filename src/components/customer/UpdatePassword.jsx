@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { useUser } from '../../hooks/useUser';
 
 export default function UpdatePassword() {
@@ -30,7 +31,9 @@ export default function UpdatePassword() {
                                     "password": data.get("pass")
                                 }),
 
-                            }).then(() => navigate("/user/about"))
+                            })
+                                .then(() => navigate("/user/about"))
+                                .then(() => toast.success("Password Updated Successfully."))
                         }
                     }}
                     >

@@ -16,26 +16,39 @@ export default function Orders() {
             }
         })
             .then(res => res.json())
-            .then(json => setOrders(json))
+            .then(json => {
+                json.reverse();
+                setOrders(json);
+            });
     }, [])
 
     return (
         <>
-            <button onClick={() => navigate("/menu")}>Menu</button>
-            {orders.map(order => {
-                const { bookingOrderId, orderDate, transactionMode, quantity, totalCost, couponName, orderType, pizzaList } = order;
-                return (
-                    <div>
-                        <div className="id">Booking Id: {bookingOrderId}</div>
-                        <div className="transmode">Transaction Mode: {transactionMode}</div>
-                        <div className="quantity">Quantity: {quantity}</div>
-                        <div className="cost">Cost: {totalCost}</div>
-                        <div className="type">Order type: {orderType}</div>
-                        <button onClick={() => navigate(`/orders/${bookingOrderId}`)}>Get Details</button>
-                        <br />
-                    </div>
-                )
-            })}
+            {orders !== [] &&
+                orders.map(order => {
+                    const { bookingOrderId, orderDate, transactionMode, quantity, totalCost, couponName, orderType, pizzaList } = order;
+                    return (
+                        <div>
+                            <button onClick={() => navigate("/menu")}>Menu</button>
+                            <div className="id">Booking Id: {bookingOrderId}</div>
+                            <div className="transmode">Transaction Mode: {transactionMode}</div>
+                            <div className="quantity">Quantity: {quantity}</div>
+                            <div className="cost">Cost: {totalCost}</div>
+                            <div className="type">Order type: {orderType}</div>
+                            <button onClick={() => navigate(`/orders/${bookingOrderId}`)}>Get Details</button>
+                            <br />
+                        </div>
+                    )
+                })
+            }
+            {orders.length === 0 &&
+                <>
+                    <div className="noOrder">No Orders Available</div>
+                    <div>Please add some items from the menu.</div>
+                    <button onClick={() => navigate("/menu")}>Explore Menu</button>
+
+                </>
+            }
         </>
     )
 }
