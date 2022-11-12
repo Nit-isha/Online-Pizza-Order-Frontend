@@ -83,6 +83,7 @@ export default function Cart() {
                                         .then(res => {
                                             setDiscount(res);
                                             if (res === 0) { toast.error("Coupon NOT Applicable.") }
+                                            else { toast.success(`Coupon ${data.get("couponApplied")} applied.`) }
                                         })
                                         .catch(err => {
                                             toast.error(err.message)
