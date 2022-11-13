@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import useLocalStorage from '../hooks/useLocalStorage';
 import { useUser } from '../hooks/useUser';
 import { toast } from 'react-toastify';
@@ -14,6 +14,8 @@ export default function Payment({ props }) {
     const info = useUserInfo();
     const { token } = useUser()
     let navigate = useNavigate();
+    const location = useLocation();
+    const {disc,gT}= location.state;
     const [transactionMode, setTransactionMode] = useState("Cash On Delivery");
     const [orderType, setOrderType] = useState("Home Delivery");
     let subTotal = 0;
@@ -160,14 +162,14 @@ export default function Payment({ props }) {
                             <span>Coupon Applied</span>
                             <div className='payment-coupon-name-value'>
                                 {/* {props.discount} */}
-                                PIZZA50
+                                {disc}
                             </div>
                         </div>
                         <div className="payment-grand-total-cost">
                             <span>Grand Total</span>
                             <div className='payment-grand-total-value'>
                                 <FaRupeeSign size={13} />
-                                {subTotal}
+                                {gT}
                             </div>
                         </div>
                         <button type='submit' className='payment-place-order-button' disabled="true">Confirm Order</button>

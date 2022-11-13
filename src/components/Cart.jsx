@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import useLocalStorage from '../hooks/useLocalStorage'
 import { FaRupeeSign } from 'react-icons/fa';
 import { toast } from 'react-toastify';
 import { useUser } from '../hooks/useUser';
 import Logout from '../authentication/Logout';
 import '../styles/Cart.css';
+
 
 export default function Cart() {
     const [cart, setCart] = useLocalStorage("cart", []);
@@ -14,6 +15,7 @@ export default function Cart() {
     const [discount, setDiscount] = useState(0);
     const { token } = useUser();
     let subTotal = 0;
+    const [grandTotal, setGrandTotal] = useState(subTotal);
     let navigate = useNavigate();
 
     useEffect(() => {
@@ -103,6 +105,7 @@ export default function Cart() {
                                             })
                                             .then(res => {
                                                 setDiscount(res);
+                                                setGrandTotal(subTotal - res);
                                                 if (res === 0) { toast.error("Coupon NOT Applicable.") }
                                                 else { toast.success(`Coupon ${data.get("couponApplied")} applied.`) }
                                             })
@@ -145,8 +148,9 @@ export default function Cart() {
                                 <label htmlFor="cart-total-discount" id='cart-total-discount'>Discount</label>
                                 <div className="cart-total-discount"><FaRupeeSign size={12} />{discount && discount}</div><br />
                                 <label htmlFor="cart-total-grandTotal" id='cart-total-grandTotal'>Grand Total</label>
-                                <div className="cart-total-grandTotal"><FaRupeeSign size={12} />{subTotal - discount}</div><br />
-                                <button className='cart-button-place-order' onClick={() => { navigate("/payment") }} disabled={subTotal === 0}>Proceed to Payment</button>
+                                <div className="cart-total-grandTotal"><FaRupeeSign size={12} />{grandTotal}</div><br />
+                                {/* <button className='cart-button-place-order' onClick={() => { navigate("/payment") }} disabled={subTotal === 0}>Proceed to Payment</button> */}
+                                <button className='cart-button-place-order' disabled={subTotal === 0}><Link to="/payment" state={{disc : discount,gT:grandTotal}}>Proceed to Payment</Link></button>
                             </div>
                         </div>
                     </>
