@@ -10,6 +10,7 @@ import Cart from "../components/Cart";
 import Payment from "../components/Payment";
 import Orders from "../components/order-history/Orders";
 import OrderById from "../components/order-history/OrderById";
+import PageNotFound from "../components/PageNotFound";
 
 export default createBrowserRouter([
 	{ path: "/", element: <Navigate to="/menu" replace /> },
@@ -24,4 +25,5 @@ export default createBrowserRouter([
 	{ path: "/payment", element: <Payment /> },
 	{ path: "/orders", element: <Orders /> },
 	{ path: "/orders/:orderId", element: <OrderById /> },
+	{ path: "*", element: <PageNotFound /> },
 ]);
