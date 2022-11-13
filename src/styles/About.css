@@ -1,1 +1,104 @@
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+SC:wght@500&family=Dancing+Script:wght@700&family=Poppins&display=swap');
+
+.about-container {
+    margin-top: 100px;
+    background-color: white;
+    width: fit-content;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+    padding: 30px;
+    position: relative;
+    top: 0%;
+    left: 35%;
+    width: 35%;
+    height: 50vh;
+    font-family: 'Poppins';
+    font-size: 14px;
+}
+.about-personal-details-heading {
+    font-family: 'Poppins';
+    font-size: 20px;
+    color: rgb(114, 98, 185);
+    font-weight: 600;
+    margin-bottom: 20px;
+    border-bottom: 1px solid rgb(83, 71, 136);
+}
+
+/* --------- Details ---------- */
+
+.about-customer-name {
+    font-size: 15px;
+    margin-bottom: 5px;
+}
+.about-customer-username {
+    font-size: 15px;
+    margin-bottom: 5px;
+}
+.about-customer-mobile {
+    font-size: 15px;
+    margin-bottom: 5px;
+}
+.about-customer-email {
+    font-size: 15px;
+    margin-bottom: 5px;
+}
+.about-customer-address {
+    font-size: 15px;
+    margin-bottom: 20px;
+}
+#about-span{
+    font-weight: 600;
+    margin-right: 15px;
+    font-size: 15px;
+    color: rgb(145, 17, 17);
+}
+
+
+/* --------- Buttons --------- */
+
+.about-update-credentials {
+    padding: 10px;
+    background-color: white;
+    border-color: rgb(114, 98, 185);
+    font-family: 'Poppins';
+    color: rgb(114, 98, 185);
+    font-size: 13px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+.about-update-credentials:hover {
+    color: white;
+    border-color:  transparent;
+    background-color: rgb(114, 98, 185);
+    transition: 0.4s all ease;
+}
+.about-update-username {
+    padding: 10px;
+    background-color: white;
+    border-color: rgb(114, 98, 185);
+    font-family: 'Poppins';
+    color: rgb(114, 98, 185);
+    font-size: 13px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+.about-update-username:hover {
+    color: white;
+    border-color:  transparent;
+    background-color: rgb(114, 98, 185);
+    transition: 0.4s all ease;
+}
+.about-update-password {
+    padding: 10px;
+    background-color: white;
+    border-color: rgb(114, 98, 185);
+    font-family: 'Poppins';
+    color: rgb(114, 98, 185);
+    font-size: 13px;
+    cursor: pointer;
+}
+.about-update-password:hover {
+    color: white;
+    border-color:  transparent;
+    background-color: rgb(114, 98, 185);
+    transition: 0.4s all ease;
+}
