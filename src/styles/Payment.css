@@ -1,0 +1,139 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+SC:wght@500&family=Dancing+Script:wght@700&family=Poppins&display=swap');
+
+.payment-container {
+    /* text-align: center; */
+    /* border: 2px solid red; */
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+    position: absolute;
+    top: 0%;
+    left: 35%;
+    width: 35%;
+    height: 70vh;
+    margin-top: 100px;
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    background-color: white;
+    /* padding: 200px 0px; */
+}
+.payment-greet-customer-name {
+    font-family: 'Dancing Script', cursive;
+    font-size: 30px;
+    padding-bottom: 20px;
+    color: rgb(158, 3, 158);
+}
+.payment-customer-address {
+    padding-bottom: 20px;
+    /* font-family: 'Poppins', sans-serif; */
+}
+.payment-customer-address span{
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: rgb(9, 84, 155);
+}
+#payment-div-details{
+    padding: 15px;
+    padding-left: 20px;
+    padding-right: 20px;
+    width: fit-content;
+    background-color: rgb(243, 214, 214);
+    border-radius: 10px;
+    font-family: 'Courier New', Courier, monospace;
+    /* line-break: 2px; */
+}
+.payment-update-customer-address {
+    padding: 7px;
+    font-family: 'Poppins';
+    font-size: 12px;
+    background-color: white;
+    border-radius: 15px;
+    border-color: transparent;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+    cursor: pointer;
+}
+
+.payment-transaction-mode span{
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: rgb(9, 84, 155);
+    padding-bottom: 10px;
+}
+.payment-transaction-mode{
+    margin-bottom: 10px;
+}
+.payment-order-type span{
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: rgb(9, 84, 155);
+}
+.payment-order-type {
+    margin-bottom: 10px;
+}
+.payment-quantity span {
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: rgb(9, 84, 155);
+    display: inline;
+}
+.payment-quantity-value {
+    display: inline;
+    padding-left: 140px;
+    font-size: 17px;
+    font-family: 'Times New Roman', Times, serif;
+}
+.payment-total-cost span {
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: rgb(9, 84, 155);
+    display: inline;
+}
+.payment-total-value {
+    display: inline;
+    padding-left: 135px;
+    font-size: 17px;
+    font-family: 'Times New Roman', Times, serif;
+}
+.payment-coupon-name span {
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: rgb(9, 84, 155);
+    display: inline;
+}
+.payment-coupon-name-value {
+    display: inline;
+    padding-left: 70px;
+    font-size: 16px;
+    font-family: 'Times New Roman', Times, serif;
+}
+.payment-grand-total-cost span {
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: rgb(9, 84, 155);
+    display: inline;
+}
+.payment-grand-total-value {
+    display: inline;
+    padding-left: 117px;
+    font-size: 17px;
+    font-family: 'Times New Roman', Times, serif;
+}
+.payment-place-order-button {
+    margin-top: 15px;
+    padding: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    background-color: rgb(69, 230, 69);
+    border-color: transparent;
+    font-size: 13px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+}

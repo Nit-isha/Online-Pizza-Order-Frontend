@@ -5,6 +5,8 @@ import { useUser } from '../hooks/useUser';
 import { toast } from 'react-toastify';
 import useUserInfo from '../hooks/useUserInfo';
 import { FaRupeeSign } from 'react-icons/fa';
+import '../styles/Payment.css';
+import Logout from '../authentication/Logout';
 
 export default function Payment({ props }) {
     const [cart, setCart] = useLocalStorage("cart", []);
@@ -38,95 +40,149 @@ export default function Payment({ props }) {
 
     return (
         <>
-            {token &&
-                <div>
-                    <button id="backToCart" onClick={() => navigate("/cart")}>Back to Cart</button>
-                    <div className="custname">Hello {info?.customerName}!!</div>
-                    <div className="address">
-                        <strong>Delivery Address</strong> <br />
-                        {info?.customerAddress}<br />
-                        <button onClick={() => navigate("/user/update")}>Change</button> <br />
-                        {info?.customerMobile}
-                    </div>
-                    <div className="transactionMode">
-                        <strong>Transaction Mode</strong> <br />
-                        <select name="transactionMode" id="transactionMode" onChange={(e) => setTransactionMode(e.target.value)}>
-                            <option value="Cash On Delivery">Cash On Delivery</option>
-                            <option value="Credit Card">Credit Card</option>
-                            <option value="Debit Card">Debit Card</option>
-                            <option value="Net Banking">Net Banking</option>
-                            <option value="UPI and Wallets">UPI and Wallets</option>
-                        </select>
-                    </div>
-                    <div className="orderType">
-                        <strong>Order Type</strong><br />
-                        <select name="orderType" id="orderType" onChange={(e) => setOrderType(e.target.value)}>
-                            <option value="Home Delivery">Home Delivery</option>
-                            <option value="Pick-up">Pick-up</option>
-                            <option value="Dine-in">Dine-in</option>
-                            <option value="Table Ordering">Table Ordering</option>
-                        </select>
-                    </div>
-                    <div className="quantity">
-                        <strong>Quantity</strong><br />
-                        {cart.length + 1}
-                    </div>
-                    <div className="totalCost">
-                        <strong>Sub Total</strong><br />
-                        <FaRupeeSign />{subTotal}
-                    </div>
-                    <div className="couponName">
-                        <strong>Coupon applied</strong><br />
-                        {/* {props.discount} */}
-                    </div>
-                    <button type='submit' onClick={confirmOrder}>Confirm Order</button>
-
+            <div className="menu-navigation">
+                <div id="menu-heading" onClick={() => navigate("/menu")} style={{ cursor: "pointer" }}><img src={"/logo192.png"}></img>Yolo's Pizza</div>
+                <div className="menu-navigation-right">
+                    {/* <button onClick={() => navigate("/menu")}>Menu</button> */}
+                    <button id="backToCart" onClick={() => navigate("/cart")}>My Cart</button>
+                    {!token && <button id="menu-login-button" onClick={() => navigate("/login?from=/cart")}>Login</button>}
+                    {!token && <button id="menu-signup-button" onClick={() => navigate("/register?from=/cart")}>Signup</button>}
+                    {token && <button id="menu-profile-button" onClick={() => navigate("/user/about")}>Profile</button>}
+                    {token && <button id="menu-orders-button" onClick={() => navigate("/orders")}>Orders</button>}
+                    <Logout />
                 </div>
-            }
-            {!token &&
-                <div>
-                    <button id="backToCart" onClick={() => navigate("/cart")}>Back to Cart</button>
-                    <div className="custname">Hey there!</div>
-                    <div className="address">
-                        <strong>Delivery Address</strong> <br />
-                        Login to use your saved address <br />
-                        <button onClick={() => navigate("/login")}>LOGIN</button>
-                    </div>
-                    <div className="transactionMode">
-                        <strong>Transaction Mode</strong> <br />
-                        <select name="transactionMode" id="transactionMode" onChange={(e) => setTransactionMode(e.target.value)}>
-                            <option value="Cash On Delivery">Cash On Delivery</option>
-                            <option value="Credit Card">Credit Card</option>
-                            <option value="Debit Card">Debit Card</option>
-                            <option value="Net Banking">Net Banking</option>
-                            <option value="UPI and Wallets">UPI and Wallets</option>
-                        </select>
-                    </div>
-                    <div className="orderType">
-                        <strong>Order Type</strong><br />
-                        <select name="orderType" id="orderType" onChange={(e) => setOrderType(e.target.value)}>
-                            <option value="Home Delivery">Home Delivery</option>
-                            <option value="Pick-up">Pick-up</option>
-                            <option value="Dine-in">Dine-in</option>
-                            <option value="Table Ordering">Table Ordering</option>
-                        </select>
-                    </div>
-                    <div className="quantity">
-                        <strong>Quantity</strong><br />
-                        {cart.length + 1}
-                    </div>
-                    <div className="totalCost">
-                        <strong>Sub Total</strong><br />
-                        <FaRupeeSign />{subTotal}
-                    </div>
-                    <div className="couponName">
-                        <strong>Coupon applied</strong><br />
-                        none
-                    </div>
-                    <button type='submit' disabled="true">Confirm Order</button>
-                </div>
-            }
+            </div>
+            {cart.length !== 0 && <div className='payment-container'>
 
+                {token && cart.length !== 0 &&
+                    <div className='payment-logged-in-container'>
+                        <div className="payment-greet-customer-name">Hello {info?.customerName}!! &#128516;</div>
+                        <div className="payment-customer-address">
+                            <span>Delivery Address</span><br />
+                            <div id='payment-div-details'>
+                                {info?.customerAddress}<br />
+                                {info?.customerMobile}<br />
+                                <button className='payment-update-customer-address' onClick={() => navigate("/user/update")}>Update Address</button> <br />
+                            </div>
+                        </div>
+                        <div className="payment-transaction-mode">
+                            <span>Transaction Mode </span><br />
+                            <select name="transactionMode" id="transactionMode" onChange={(e) => setTransactionMode(e.target.value)}>
+                                <option value="Cash On Delivery">Cash On Delivery</option>
+                                <option value="Credit Card">Credit Card</option>
+                                <option value="Debit Card">Debit Card</option>
+                                <option value="Net Banking">Net Banking</option>
+                                <option value="UPI and Wallets">UPI and Wallets</option>
+                            </select>
+                        </div>
+                        <div className="payment-order-type">
+                            <span>Order Type</span><br />
+                            <select name="orderType" id="orderType" onChange={(e) => setOrderType(e.target.value)}>
+                                <option value="Home Delivery">Home Delivery</option>
+                                <option value="Pick-up">Pick-up</option>
+                                <option value="Dine-in">Dine-in</option>
+                                <option value="Table Ordering">Table Ordering</option>
+                            </select>
+                        </div>
+                        <div className="payment-quantity">
+                            <span>Quantity</span>
+                            <div className='payment-quantity-value'>
+                                {cart.length + 1} pizza
+                            </div>
+                        </div>
+                        <div className="payment-total-cost">
+                            <span>Sub Total</span>
+                            <div className='payment-total-value'>
+                                <FaRupeeSign size={13} />{subTotal}
+                            </div>
+                        </div>
+                        <div className="payment-coupon-name">
+                            <span>Coupon Applied</span>
+                            <div className='payment-coupon-name-value'>
+                                {/* {props.discount} */}
+                                PIZZA50
+                            </div>
+                        </div>
+                        <div className="payment-grand-total-cost">
+                            <span>Grand Total</span>
+                            <div className='payment-grand-total-value'>
+                                <FaRupeeSign size={13} />
+                                {subTotal}
+                            </div>
+                        </div>
+                        <button type='submit' className='payment-place-order-button' onClick={confirmOrder}>Confirm Order</button>
+                    </div>
+                }
+                {!token &&
+                    <div>
+                        {/* <button id="backToCart" onClick={() => navigate("/cart")}>Back to Cart</button> */}
+                        <div className="payment-greet-customer-name">Hey there! &#128516;</div>
+                        <div className="payment-customer-address">
+                            <span>Delivery Address</span> <br />
+                            <div id='payment-div-details'>
+                                Login to use your saved address <br />
+                                <button className='payment-update-customer-address' onClick={() => navigate("/login?from=/payment")}>LOGIN</button>
+                            </div>
+                        </div>
+                        <div className="payment-transaction-mode">
+                            <span>Transaction Mode</span> <br />
+                            <select name="transactionMode" id="transactionMode" onChange={(e) => setTransactionMode(e.target.value)}>
+                                <option value="Cash On Delivery">Cash On Delivery</option>
+                                <option value="Credit Card">Credit Card</option>
+                                <option value="Debit Card">Debit Card</option>
+                                <option value="Net Banking">Net Banking</option>
+                                <option value="UPI and Wallets">UPI and Wallets</option>
+                            </select>
+                        </div>
+                        <div className="payment-order-type">
+                            <span>Order Type</span><br />
+                            <select name="orderType" id="orderType" onChange={(e) => setOrderType(e.target.value)}>
+                                <option value="Home Delivery">Home Delivery</option>
+                                <option value="Pick-up">Pick-up</option>
+                                <option value="Dine-in">Dine-in</option>
+                                <option value="Table Ordering">Table Ordering</option>
+                            </select>
+                        </div>
+                        <div className="payment-quantity">
+                            <span>Quantity</span>
+                            <div className='payment-quantity-value'>
+                                {cart.length + 1} pizza
+                            </div>
+                        </div>
+                        <div className="payment-total-cost">
+                            <span>Sub Total</span>
+                            <div className='payment-total-value'>
+                                <FaRupeeSign size={13} />{subTotal}
+                            </div>
+                        </div>
+                        <div className="payment-coupon-name">
+                            <span>Coupon Applied</span>
+                            <div className='payment-coupon-name-value'>
+                                {/* {props.discount} */}
+                                PIZZA50
+                            </div>
+                        </div>
+                        <div className="payment-grand-total-cost">
+                            <span>Grand Total</span>
+                            <div className='payment-grand-total-value'>
+                                <FaRupeeSign size={13} />
+                                {subTotal}
+                            </div>
+                        </div>
+                        <button type='submit' className='payment-place-order-button' disabled="true">Confirm Order</button>
+                    </div>
+                }
+            </div>}
+            {
+                subTotal === 0 &&
+                <>
+                    <div className='cart-empty-cart-container'>
+                        <img src="/images/emptyCart.png" className='cart-image-cart-looks-empty' />
+                        <div className='cart-message-cart-looks-empty'>Cart Looks empty!</div>
+                        <button className='cart-button-empty-explore-menu' onClick={() => navigate("/menu")}>Explore Menu</button>
+                    </div>
+                </>
+            }
         </>
     )
 }

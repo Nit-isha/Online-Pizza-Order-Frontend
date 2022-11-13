@@ -1,11 +1,14 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import { useUser } from "../hooks/useUser";
 
 export default function Login() {
     const { token, login } = useUser();
     const [validateUser, setValidateUser] = useState();
     let navigate = useNavigate();
+
+    const location = useLocation();
+    const [searchParam] = useSearchParams();
 
     return (
         <div className="login-container">
@@ -34,7 +37,11 @@ export default function Login() {
                         })
                         .then(res => {
                             login(res.token);
-                            navigate(-1);
+                            if (searchParam.has("from")) {
+                                navigate(searchParam.get("from"));
+                                return;
+                            }
+                            navigate("/menu");
                         }).catch(err => setValidateUser(err.message))
 
                 }}>
