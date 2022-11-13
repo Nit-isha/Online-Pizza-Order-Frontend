@@ -10,7 +10,7 @@ export default function PageNotFound() {
             <div className='page-not-found-message'>
                 You entered the wrong page.
             </div>
-            <button onClick={() => navigate("/menu")}>Emplore Menu</button>
+            <button onClick={() => navigate("/menu")}>Explore Menu</button>
         </div>
     )
 }

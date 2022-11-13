@@ -8,7 +8,7 @@
     top: 0%;
     left: 35%;
     width: 35%;
-    height: 70vh;
+    height: 80vh;
     margin-top: 100px;
     align-self: center;
     display: flex;
@@ -40,8 +40,13 @@
     width: fit-content;
     background-color: rgb(243, 214, 214);
     border-radius: 10px;
-    font-family: 'Courier New', Courier, monospace;
+    /* font-family: 'Courier New', Courier, monospace; */
+    font-family: 'Poppins';
+    font-size: 14px;
     /* line-break: 2px; */
+}
+#payment-div-details span{
+    padding-right: 8px;
 }
 .payment-update-customer-address {
     padding: 7px;
@@ -52,6 +57,7 @@
     border-color: transparent;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
     cursor: pointer;
+    margin-top: 8px;
 }
 
 .payment-transaction-mode span{
@@ -126,14 +132,22 @@
     font-family: 'Times New Roman', Times, serif;
 }
 .payment-place-order-button {
-    margin-top: 15px;
+    margin-top: 35px;
     padding: 10px;
     padding-left: 20px;
     padding-right: 20px;
-    background-color: rgb(69, 230, 69);
+    width: 200px;
+    background-color: crimson;
+    color: white;
     border-color: transparent;
     font-size: 13px;
     font-family: 'Poppins', sans-serif;
     font-weight: 600;
     cursor: pointer;
+}
+.payment-place-order-button:hover {
+    background-color: white;
+    color: crimson;
+    border-color: crimson;
+    transition: 0.4s all ease;
 }

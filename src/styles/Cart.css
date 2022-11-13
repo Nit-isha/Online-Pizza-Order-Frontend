@@ -94,6 +94,12 @@
     text-transform: uppercase;
     cursor: pointer;
 }
+.cart-pizza-remove-button:hover {
+    color: white;
+    background-color: rgb(245, 72, 72);
+    border-color: transparent;
+    transition: 0.4s all ease;
+}
 
 
 /* ----------- Coupon Section ----------- */
@@ -117,6 +123,9 @@
     box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
     cursor: pointer;
 }
+.cart-apply-coupon-button:hover {
+    border-color: black;
+}
 .cart-apply-coupon-heading {
     margin-top: 8px;
     font-family: 'Poppins', sans-serif;
@@ -130,14 +139,30 @@
     border-radius: 15px;
     padding-left: 10px;
     font-family:  'Poppins', sans-serif;
+    margin-right: 10px;
 }
 #cart-coupon-apply-submit {
-    padding: 7px;
+    padding: 10px;
+    /* margin-left: 10px; */
     background-color: transparent;
     margin-left: 2px;
     font-family: 'Courier New', Courier, monospace;
     font-weight: 600;
     cursor: pointer;
+    color: crimson;
+    border-color: crimson;
+    border-radius: 35px;
+    box-shadow: rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px;
+}
+#cart-coupon-apply-submit:hover {
+    background-color: transparent;
+    margin-left: 2px;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 600;
+    cursor: pointer;
+    background-color: crimson;
+    color: white;
+    transition: 0.4s all ease;
     box-shadow: rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px;
 }
 .cart-available-offers {

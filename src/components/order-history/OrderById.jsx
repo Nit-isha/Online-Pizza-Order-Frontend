@@ -5,6 +5,9 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useUser } from '../../hooks/useUser';
 import { FaRupeeSign } from 'react-icons/fa';
+import Logout from '../../authentication/Logout';
+import "../../styles/OrderById.css";
+import Menu from '../menu/Menu';
 
 export default function OrderById() {
     const { orderId } = useParams();
@@ -20,8 +23,20 @@ export default function OrderById() {
                 "Authorization": "Bearer " + token
             }
         })
-            .then(res => res.json())
+            .then(async res => {
+                if (res.ok) {
+                    return res.json();
+                }
+                else {
+                    const error = await res.json();
+                    throw Error(error.msg);
+                }
+            })
             .then(json => setOrder(json))
+            .catch(err => {
+                toast.error(err.message);
+                navigate("/404");
+            })
     }, [])
 
     const cancelOrder = (id) => {
@@ -51,38 +66,52 @@ export default function OrderById() {
         }
         return (
             <>
-                <button onClick={() => navigate("/menu")}>Menu</button>
-                <button onClick={() => navigate("/orders")}>Back</button>
-                <br />
-                {time && <button onClick={() => {
-                    cancelOrder(bookingOrderId);
-                    navigate("/orders");
-                    window.location.reload(false);
-                }}>Cancel Order</button>}
+                <div className="menu-navigation">
+                    <div id="menu-heading" onClick={() => navigate("/menu")} style={{ cursor: "pointer" }}><img src={"/logo192.png"}></img>Yolo's Pizza</div>
+                    <div className="menu-navigation-right">
+                        <button onClick={() => navigate("/menu")}>Menu</button>
+                        {!token && <button id="menu-login-button" onClick={() => navigate("/login")}>Login</button>}
+                        {!token && <button id="menu-signup-button" onClick={() => navigate("/register")}>Signup</button>}
+                        {token && <button id="menu-profile-button" onClick={() => navigate("/user/about")}>Profile</button>}
+                        {token && <button id="menu-orders-button" onClick={() => navigate("/orders")}>Orders</button>}
+                        <Logout />
+                    </div>
+                </div>
+                {/* {token && <PageNotFound />} */}
+                {token &&
+                    <div className='orders-by-id-container'>
+                        {time && <button className='orders-by-id-cancel-button' onClick={() => {
+                            cancelOrder(bookingOrderId);
+                            navigate("/orders");
+                            window.location.reload(false);
+                            toast.success("Order Cancelled Successfully.");
+                        }}>Cancel Order</button>}
 
-                <div className="id">Booking Id: {bookingOrderId}</div>
-                <div className="date">Order Date: {orderDate}</div>
-                <div className="transmode">Transaction Mode: {transactionMode}</div>
-                <div className="quantity">Quantity: {quantity}</div>
-                <div className="cost">Cost: {totalCost}</div>
-                <div className="coupon">Coupon: {couponName}</div>
-                <div className="type">Order type: {orderType}</div><br />
-                {
-                    order.pizzaList?.map(pizza => {
-                        const { pizzaId, pizzaType, pizzaName, pizzaSize, pizzaDescription, pizzaCost } = pizza;
-                        return (
-                            <div>
-                                <div className="pizzaId">Pizza ID: {pizzaId}</div><br />
-                                <div className="pizzaType">Pizza Type: {pizzaType}</div><br />
-                                <div className="pizzaName">Pizza Name: {pizzaName}</div><br />
-                                <div className="pizzaSize">Pizza Size: {pizzaSize}</div><br />
-                                <div className="pizzaDescription">Pizza Description: {pizzaDescription}</div><br />
-                                <div className="pizzaCost">Pizza Cost: <FaRupeeSign />{pizzaCost}</div><br />
-                            </div>
-                        )
-                    })
+                        <div className="orders-by-id-booking-id">Booking Id: {bookingOrderId}</div>
+                        <div className="orders-by-id-date">Order Date: {orderDate}</div>
+                        <div className="orders-by-id-transaction-mode">Transaction Mode: {transactionMode}</div>
+                        <div className="orders-by-id-quantity">Quantity: {quantity}</div>
+                        <div className="orders-by-id-cost">Cost: {totalCost}</div>
+                        <div className="orders-by-id-coupon">Coupon: {couponName}</div>
+                        <div className="orders-by-id-type">Order type: {orderType}</div><br />
+                        {
+                            order.pizzaList?.map(pizza => {
+                                const { pizzaId, pizzaType, pizzaName, pizzaSize, pizzaDescription, pizzaCost } = pizza;
+                                return (
+                                    <div className='orders-by-id-pizza-container'>
+                                        <div className="orders-by-id-pizza-type"><img src={`/images/${pizzaType}.jpg`}></img></div>
+                                        <div className="orders-by-id-pizza-name">{pizzaName}</div>
+                                        <div className="orders-by-id-pizza-cost"><FaRupeeSign size={12} />{pizzaCost}</div>
+                                        <div className="orders-by-id-pizza-size">{pizzaSize}</div>
+                                        <div className="orders-by-id-pizza-description">{pizzaDescription}</div>
+                                    </div>
+                                )
+                            })
+                        }
+
+                    </div>
                 }
-
+                {!token && <Menu />}
             </>
         )
     }

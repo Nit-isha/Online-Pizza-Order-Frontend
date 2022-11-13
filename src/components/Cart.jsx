@@ -35,9 +35,9 @@ export default function Cart() {
             <div className="menu-navigation">
                 <div id="menu-heading" onClick={() => navigate("/menu")} style={{ cursor: "pointer" }}><img src={"/logo192.png"}></img>Yolo's Pizza</div>
                 <div className="menu-navigation-right">
-                    {/* <button onClick={() => navigate("/menu")}>Menu</button> */}
+                    <button onClick={() => navigate("/menu")}>Menu</button>
                     {!token && <button id="menu-login-button" onClick={() => navigate("/login?from=/cart")}>Login</button>}
-                    {!token && <button id="menu-signup-button" onClick={() => navigate("/register?from=/cart")}>Signup</button>}
+                    {!token && <button id="menu-signup-button" onClick={() => navigate("/register")}>Signup</button>}
                     {token && <button id="menu-profile-button" onClick={() => navigate("/user/about")}>Profile</button>}
                     {token && <button id="menu-orders-button" onClick={() => navigate("/orders")}>Orders</button>}
                     <Logout />

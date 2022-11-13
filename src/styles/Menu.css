@@ -244,24 +244,27 @@ option {
     width: 250px;
 }
 #menu-cart-checkout {
-    margin-left: 7%;
+    margin-left: 2%;
     padding: 15px;
     background-color: #82BB37;
-    border-color: #82BB37;
-    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+    border-color: transparent;
+    box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
     color: rgb(255, 255, 255);
     font-family: 'Cormorant SC', serif;
     font-size: 20px;
     text-transform: uppercase;
     font-weight: 700;
     cursor: pointer;
-    width: 220px;
+    width: 250px;
     letter-spacing: .1rem;
     /* position: fixed; */
 }
 #menu-cart-checkout:hover{
-    background-color: #92d43b;
-    border-color: none;
+    background-color: transparent;
+    color: #3a5814;
+    border-color: #82BB37;
+    transition: 0.4s all ease;
+    border: 2px solid;
 }
 .cart-type-name {
     display: flex;
@@ -290,7 +293,7 @@ option {
 }
 .menu-cart-remove {
     float: right;
-    padding: 5px;
+    padding: 7px;
     padding-left: 10px;
     padding-right: 10px;
     font-family: 'Poppins', sans-serif;
@@ -299,12 +302,15 @@ option {
     font-weight: 600;
     letter-spacing: 1px;
     background-color: transparent;
-    border-color: red;
-    color: maroon;
+    border-color: crimson;
+    background-color: white;
+    color: crimson;
     cursor: pointer;
 }
 .menu-cart-remove:hover {
-    background-color: rgb(235, 226, 221);
+    background-color: crimson;
+    color: white;
+    transition: 0.4s all ease;
 
 }
 .menu-cart-remove :hover{

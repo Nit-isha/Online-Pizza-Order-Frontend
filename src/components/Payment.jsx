@@ -4,7 +4,8 @@ import useLocalStorage from '../hooks/useLocalStorage';
 import { useUser } from '../hooks/useUser';
 import { toast } from 'react-toastify';
 import useUserInfo from '../hooks/useUserInfo';
-import { FaRupeeSign } from 'react-icons/fa';
+import { FaRupeeSign, FaAddressBook } from 'react-icons/fa';
+import { IoCall } from 'react-icons/io5';
 import '../styles/Payment.css';
 import Logout from '../authentication/Logout';
 
@@ -43,10 +44,10 @@ export default function Payment({ props }) {
             <div className="menu-navigation">
                 <div id="menu-heading" onClick={() => navigate("/menu")} style={{ cursor: "pointer" }}><img src={"/logo192.png"}></img>Yolo's Pizza</div>
                 <div className="menu-navigation-right">
-                    {/* <button onClick={() => navigate("/menu")}>Menu</button> */}
+                    <button onClick={() => navigate("/menu")}>Menu</button>
                     <button id="backToCart" onClick={() => navigate("/cart")}>My Cart</button>
-                    {!token && <button id="menu-login-button" onClick={() => navigate("/login?from=/cart")}>Login</button>}
-                    {!token && <button id="menu-signup-button" onClick={() => navigate("/register?from=/cart")}>Signup</button>}
+                    {!token && <button id="menu-login-button" onClick={() => navigate("/login?from=/payment")}>Login</button>}
+                    {!token && <button id="menu-signup-button" onClick={() => navigate("/register")}>Signup</button>}
                     {token && <button id="menu-profile-button" onClick={() => navigate("/user/about")}>Profile</button>}
                     {token && <button id="menu-orders-button" onClick={() => navigate("/orders")}>Orders</button>}
                     <Logout />
@@ -60,8 +61,8 @@ export default function Payment({ props }) {
                         <div className="payment-customer-address">
                             <span>Delivery Address</span><br />
                             <div id='payment-div-details'>
-                                {info?.customerAddress}<br />
-                                {info?.customerMobile}<br />
+                                <span><FaAddressBook /></span>{info?.customerAddress}<br />
+                                <span><IoCall size={12} /></span>{info?.customerMobile}<br />
                                 <button className='payment-update-customer-address' onClick={() => navigate("/user/update")}>Update Address</button> <br />
                             </div>
                         </div>
