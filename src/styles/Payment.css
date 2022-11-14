@@ -151,3 +151,176 @@
     border-color: crimson;
     transition: 0.4s all ease;
 }
+
+
+
+@media (max-width:1025px) {
+    .payment-container {
+        position: absolute;
+        top: 0%;
+        left: 33%;
+        width: 35%;
+        height: 80vh;
+        padding: 20px;
+    }
+    .payment-greet-customer-name {
+        font-size: 20px;
+        padding-bottom: 15px;
+    }
+    .payment-customer-address {
+        padding-bottom: 10px;
+    }
+    .payment-customer-address span{
+        font-size: 13px;
+    }
+    #payment-div-details{
+        padding: 5px;
+        padding-left: 15px;
+        padding-right: 15px;
+        font-size: 10px;
+    }
+    #payment-div-details span{
+        padding-right: 8px;
+    }
+    .payment-update-customer-address {
+        padding: 5px;
+        font-size: 10px;
+        margin-top: 5px;
+    }
+    
+    .payment-transaction-mode span{
+        font-size: 13px;
+        padding-bottom: 10px;
+    }
+    .payment-transaction-mode{
+        margin-bottom: 10px;
+    }
+    .payment-order-type span{
+        font-size: 13px;
+    }
+    .payment-order-type {
+        margin-bottom: 10px;
+    }
+    .payment-quantity span {
+        font-size: 13px;
+    }
+    .payment-quantity-value {
+        padding-left: 110px;
+        font-size: 14px;
+    }
+    .payment-total-cost span {
+        font-size: 13px;
+    }
+    .payment-total-value {
+        padding-left: 110px;
+        font-size: 15px;
+    }
+    .payment-discount span {
+        font-size: 13px;
+    }
+    .payment-discount-value {
+        padding-left: 114px;
+        font-size: 15px;
+    }
+    .payment-grand-total-cost span {
+        font-size: 13px;
+    }
+    .payment-grand-total-value {
+        padding-left: 95px;
+        font-size: 15px;
+    }
+    .payment-place-order-button {
+        margin-top: 35px;
+        padding: 8px;
+        padding-left: 15px;
+        padding-right: 15px;
+        width: 150px;
+        
+    }
+}
+@media (max-width:748px) {
+    .payment-container {
+        position: absolute;
+        top: 0%;
+        left: 7%;
+        /* width: 35%; */
+        height: 70vh;
+        /* width: fit-content; */
+        width: 85vw;
+        padding: 20px;
+    }
+    .payment-greet-customer-name {
+        font-size: 20px;
+        padding-bottom: 15px;
+    }
+    .payment-customer-address {
+        padding-bottom: 10px;
+    }
+    .payment-customer-address span{
+        font-size: 13px;
+    }
+    #payment-div-details{
+        padding: 5px;
+        padding-left: 15px;
+        padding-right: 15px;
+        font-size: 10px;
+    }
+    #payment-div-details span{
+        padding-right: 8px;
+    }
+    .payment-update-customer-address {
+        padding: 5px;
+        font-size: 10px;
+        margin-top: 5px;
+    }
+    
+    .payment-transaction-mode span{
+        font-size: 13px;
+        padding-bottom: 10px;
+    }
+    .payment-transaction-mode{
+        margin-bottom: 10px;
+    }
+    .payment-order-type span{
+        font-size: 13px;
+    }
+    .payment-order-type {
+        margin-bottom: 10px;
+    }
+    .payment-quantity span {
+        font-size: 13px;
+    }
+    .payment-quantity-value {
+        padding-left: 110px;
+        font-size: 14px;
+    }
+    .payment-total-cost span {
+        font-size: 13px;
+    }
+    .payment-total-value {
+        padding-left: 110px;
+        font-size: 15px;
+    }
+    .payment-discount span {
+        font-size: 13px;
+    }
+    .payment-discount-value {
+        padding-left: 114px;
+        font-size: 15px;
+    }
+    .payment-grand-total-cost span {
+        font-size: 13px;
+    }
+    .payment-grand-total-value {
+        padding-left: 95px;
+        font-size: 15px;
+    }
+    .payment-place-order-button {
+        margin-top: 35px;
+        padding: 8px;
+        padding-left: 15px;
+        padding-right: 15px;
+        width: 150px;
+        
+    }
+}

@@ -333,20 +333,24 @@ option {
 
 
 
-@media only screen and (max-width: 600px){
-    .menu-content{
-        display: flex;
-        flex-direction: column;
+@media (max-width:748px) {
+    .menu-navigation {
+        padding-right: 0px;
+        padding-left: 0px;
     }
-    .menu-content-cards {
-        margin-top: 100px;
-        display: grid;
-        grid-template-columns: auto;
-        gap: 10px;
-        width: 70%;
-        margin-left: 0px;
-        align-items: center;
-        align-content: center;
-        /* margin-right: 40px; */
-    }
+    #menu-heading{
+        font-size: 18px;
+    } 
+    #menu-heading img{
+        height:20px;
+        width: 20px;
+    } 
+    .menu-navigation-right button {
+        margin: 6px;
+        padding: 5px;
+        padding-left: 0px;
+        padding-right: 0px;
+        font-size: 10px;
+        line-height: 30px;
+    } 
 }

@@ -36,3 +36,22 @@
     color: white;
     transition: 0.6s all ease;
 }
+
+
+@media (max-width:748px) {
+    .page-not-found-container {
+        width: max-content;
+        position: absolute;
+        top: 25vh;
+        left: 10vw;
+        padding: 0px;
+    }
+    .page-not-found-message {
+        margin-top: 10px;
+        font-size: 15px;
+    }
+    .page-not-found-container button {
+        width: 250px;
+        padding: 10px;
+    }
+}

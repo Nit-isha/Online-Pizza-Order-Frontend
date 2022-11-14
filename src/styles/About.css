@@ -102,3 +102,79 @@
     background-color: rgb(114, 98, 185);
     transition: 0.4s all ease;
 }
+
+
+@media (max-width:1025px) {
+    .about-container {
+        margin-top: 100px;
+        background-color: white;
+        width: fit-content;
+        padding: 30px;
+        position: relative;
+        top: 0%;
+        left: 33%;
+        height: 50vh;
+        font-family: 'Poppins';
+        font-size: 14px;
+    }
+    .about-update-credentials {
+        padding: 5px;
+        font-size: 10px;
+    }
+    .about-update-username {
+        padding: 5px;
+        font-size: 10px;
+    }
+    .about-update-password {
+        padding: 5px;
+        font-size: 10px;
+    } 
+}
+
+@media (max-width:748px) {
+    .about-container {
+        margin-top: 80px;
+        padding: 5px;
+        position: relative;
+        top: 0%;
+        left: 0%;
+        height: 35vh;
+        font-size: 8px;
+        width: max-content;
+    }
+    .about-personal-details-heading {
+        font-size: 14px;
+    }
+    .about-customer-name {
+        font-size: 12px;
+    }
+    .about-customer-username {
+        font-size: 12px;
+    }
+    .about-customer-mobile {
+        font-size: 12px;
+    }
+    .about-customer-email {
+        font-size: 12px;
+    }
+    .about-customer-address {
+        font-size: 12px;
+    }
+    #about-span{
+        margin-right: 4px;
+        font-size: 12px;
+    }
+
+    .about-update-credentials {
+        padding: 5px;
+        font-size: 10px;
+    }
+    .about-update-username {
+        padding: 5px;
+        font-size: 10px;
+    }
+    .about-update-password {
+        padding: 5px;
+        font-size: 10px;
+    } 
+}

@@ -87,13 +87,13 @@ export default function OrderById() {
                             toast.success("Order Cancelled Successfully.");
                         }}>Cancel Order</button>}
 
-                        <div className="orders-by-id-booking-id">Booking Id: {bookingOrderId}</div>
-                        <div className="orders-by-id-date">Order Date: {orderDate}</div>
-                        <div className="orders-by-id-transaction-mode">Transaction Mode: {transactionMode}</div>
-                        <div className="orders-by-id-quantity">Quantity: {quantity}</div>
-                        <div className="orders-by-id-cost">Cost: {totalCost}</div>
-                        <div className="orders-by-id-coupon">Coupon: {couponName}</div>
-                        <div className="orders-by-id-type">Order type: {orderType}</div><br />
+                        <div className="orders-by-id-booking-id"><span id='orders-by-id-span-heading'>Booking Id:</span> {bookingOrderId}</div>
+                        <div className="orders-by-id-date"><span id='orders-by-id-span-heading'>Order Date:</span> {orderDate}</div>
+                        <div className="orders-by-id-transaction-mode"><span id='orders-by-id-span-heading'>Transaction Mode:</span> {transactionMode}</div>
+                        <div className="orders-by-id-quantity"><span id='orders-by-id-span-heading'>Quantity:</span> {quantity}</div>
+                        <div className="orders-by-id-cost"><span id='orders-by-id-span-heading'>Cost:</span><FaRupeeSign size={12} />{totalCost}</div>
+                        <div className="orders-by-id-coupon"><span id='orders-by-id-span-heading'>Coupon:</span> {couponName}</div>
+                        <div className="orders-by-id-type"><span id='orders-by-id-span-heading'>Order type:</span> {orderType}</div><br />
                         {
                             order.pizzaList?.map(pizza => {
                                 const { pizzaId, pizzaType, pizzaName, pizzaSize, pizzaDescription, pizzaCost } = pizza;

@@ -63,3 +63,49 @@
     font-size: 14px;
     color: darkblue;
 }
+#orders-by-id-span-heading {
+    color: crimson;
+    margin-right: 10px;
+}
+
+
+
+@media (max-width:748px) {
+    .orders-by-id-container {
+        width: fit-content;
+        margin-left: 10px;
+        padding: 20px;
+        padding-top: 20px;
+        font-size: 10px;
+    }
+    .orders-by-id-pizza-container {
+        padding: 15px;
+    }
+    .orders-by-id-pizza-type img {
+        height: 10px;
+        width: 10px;
+    }
+    .orders-by-id-pizza-container {
+        padding: 15px;
+    }
+    .orders-by-id-pizza-type {
+        padding-right: 10px;
+    }
+    .orders-by-id-pizza-name {
+        font-size: 10px;
+    }
+    .orders-by-id-pizza-size {
+        padding-top: 10px;
+    }
+    .orders-by-id-pizza-description {
+        padding-top: 0px;
+        font-size: 9px;
+    }
+    .orders-by-id-pizza-cost {
+        font-size: 10px;
+    }
+    .orders-by-id-cancel-button {
+        padding: 3px;
+        font-size: 10px;
+    }
+}
