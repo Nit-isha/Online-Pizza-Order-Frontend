@@ -322,6 +322,16 @@
 
 
 @media (max-width:1025px) {
+    .cart-coupon-content {
+        margin-top: 100px;
+        height: 38vh;
+        margin-right: 50px;
+    }
+    
+    .cart-apply-coupon-button {
+        height: 50px;
+        width: 90%;
+    }
     .cart-total-content {
         /* border: 2px solid red; */
         box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
