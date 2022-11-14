@@ -6,18 +6,20 @@ import { toast } from 'react-toastify';
 import { useUser } from '../hooks/useUser';
 import Logout from '../authentication/Logout';
 import '../styles/Cart.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { setCouponName, setDiscount } from '../redux/paymentSlice';
 
 
 export default function Cart() {
     const [cart, setCart] = useLocalStorage("cart", []);
     const [check, setCheck] = useState(false);
     const [coupon, setCoupon] = useState([]);
-    const [discount, setDiscount] = useState(0);
+    const discount = useSelector((state) => state.payment.discount);
+    const couponName = useSelector((state) => state.payment.couponName);
+    const dispatch = useDispatch();
+    let navigate = useNavigate();
     const { token } = useUser();
     let subTotal = 0;
-    const [couponName, setCouponName] = useState(null);
-    let grandTotal = 0;
-    let navigate = useNavigate();
 
     useEffect(() => {
         fetch("http://localhost:9001/coupon", { method: "GET" })
@@ -57,7 +59,7 @@ export default function Cart() {
                         cart.map(pizzaList => {
                             const { pizzaId, pizzaType, pizzaName, pizzaSize, pizzaDescription, pizzaCost } = pizzaList;
                             subTotal += pizzaCost;
-                            grandTotal = subTotal;
+
                             return (
                                 <article key={pizzaId} id="cart-mycart-pizza">
                                     <div className='cart-images'>
@@ -94,7 +96,8 @@ export default function Cart() {
                                     <form onSubmit={(e) => {
                                         e.preventDefault();
                                         const data = new FormData(e.target);
-                                        setCouponName(data.get("couponApplied"));
+                                        dispatch(setCouponName(data.get("couponApplied")));
+
                                         fetch("http://localhost:9001/coupon/validation", {
                                             method: "POST",
                                             headers: {
@@ -115,8 +118,7 @@ export default function Cart() {
                                                 }
                                             })
                                             .then(res => {
-                                                setDiscount(res);
-                                                // grandTotal = subTotal - res;
+                                                dispatch(setDiscount(res));
                                                 if (res === 0) { toast.error("Coupon NOT Applicable.") }
                                                 else { toast.success(`Coupon ${data.get("couponApplied")} applied.`) }
                                             })
@@ -164,8 +166,9 @@ export default function Cart() {
                                 <label htmlFor="cart-total-discount" id='cart-total-discount'>Discount</label>
                                 <div className="cart-total-discount"><FaRupeeSign size={12} />{discount && discount}</div><br />
                                 <label htmlFor="cart-total-grandTotal" id='cart-total-grandTotal'>Grand Total</label>
-                                <div className="cart-total-grandTotal"><FaRupeeSign size={12} />{discount !== 0 ? (grandTotal -= discount) : grandTotal}</div><br />
-                                <button className='cart-button-place-order' disabled={subTotal === 0}><Link to="/payment" id='cart-button-place-order-link' state={{ discount: discount, grandTotal: grandTotal, couponName: couponName }}>Proceed to Payment</Link></button>
+                                <div className="cart-total-grandTotal"><FaRupeeSign size={12} />{subTotal - discount}</div><br />
+                                <button className='cart-button-place-order' disabled={subTotal === 0} onClick={() => navigate("/payment")}>Proceed to Payment</button>
+                                {/* <button className='cart-button-place-order' disabled={subTotal === 0}><Link to="/payment" id='cart-button-place-order-link' state={{ discount: discount, grandTotal: grandTotal, couponName: couponName }}>Proceed to Payment</Link></button> */}
                             </div>
                         </div>
                     </>

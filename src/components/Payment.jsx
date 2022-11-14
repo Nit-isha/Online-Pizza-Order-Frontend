@@ -8,6 +8,8 @@ import { FaRupeeSign, FaAddressBook } from 'react-icons/fa';
 import { IoCall } from 'react-icons/io5';
 import '../styles/Payment.css';
 import Logout from '../authentication/Logout';
+import { useSelector } from 'react-redux';
+import { setCouponName, setDiscount } from '../redux/paymentSlice';
 
 export default function Payment({ props }) {
     const [cart, setCart] = useLocalStorage("cart", []);
@@ -15,9 +17,11 @@ export default function Payment({ props }) {
     const { token } = useUser()
     let navigate = useNavigate();
     const location = useLocation();
-    const { discount, grandTotal, couponName } = location.state;
+    // const { discount, grandTotal, couponName } = location.state;
     const [transactionMode, setTransactionMode] = useState("Cash On Delivery");
     const [orderType, setOrderType] = useState("Home Delivery");
+    const discount = useSelector((state) => state.payment.discount);
+    const couponName = useSelector((state) => state.payment.couponName);
     let subTotal = 0;
 
     /* ------------ Function for ordering pizza ------------ */
@@ -125,7 +129,8 @@ export default function Payment({ props }) {
                             <span>Grand Total</span>
                             <div className='payment-grand-total-value'>
                                 <FaRupeeSign size={13} />
-                                {grandTotal}
+                                {/* {grandTotal} */}
+                                {subTotal - discount}
                             </div>
                         </div>
                         <button type='submit' className='payment-place-order-button' onClick={confirmOrder}>Confirm Order</button>
@@ -191,7 +196,7 @@ export default function Payment({ props }) {
                             <span>Grand Total</span>
                             <div className='payment-grand-total-value'>
                                 <FaRupeeSign size={13} />
-                                {grandTotal}
+                                {subTotal - discount}
                             </div>
                         </div>
                         <button type='submit' className='payment-place-order-button' disabled="true">Confirm Order</button>

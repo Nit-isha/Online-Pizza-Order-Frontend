@@ -80,7 +80,6 @@ export default function Login() {
             </div >
             {/* ------------ Redirecting to Menu page if already logged in ------------ */}
             {token && navigate("/menu")}
-
         </>
     )
 }
