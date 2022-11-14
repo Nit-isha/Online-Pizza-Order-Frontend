@@ -11,6 +11,8 @@ export default function Register() {
 
     return (
         <>
+            {/* ------------ NavBar ------------ */}
+
             <div className="menu-navigation">
                 <div id="menu-heading" onClick={() => navigate("/menu")} style={{ cursor: "pointer" }}><img src={"/logo192.png"}></img>Yolo's Pizza</div>
                 <div className="menu-navigation-right">
@@ -19,6 +21,9 @@ export default function Register() {
                     {token && <button id="menu-orders-button" onClick={() => navigate("/orders")}>Orders</button>}
                 </div>
             </div>
+
+            {/* ------------ Fetching register API ------------ */}
+
             <div className="register-container">
                 <div className="Register-Page">Register</div>
                 {!token &&
@@ -54,6 +59,9 @@ export default function Register() {
                                 .catch(err => setError(err.message));
                         }}
                     >
+
+                        {/* ------------ Register credentials ------------ */}
+
                         <label htmlFor="name" className="register-label">Name</label>
                         <input type="text" name="name" id="register-name" required autoFocus Placeholder="enter name" />
                         <br />
@@ -92,7 +100,11 @@ export default function Register() {
                         />
                     </form>
                 }
+
             </div>
+            {/* ------------ Redirecting to Menu page if already logged in ------------ */}
+
+            {token && navigate("/menu")}
         </>
     )
 }

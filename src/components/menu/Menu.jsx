@@ -22,9 +22,7 @@ export default function Menu() {
     }, [])
 
     const filteredPizza = menu.filter((pizza) => {
-        if (!filter || filter === "none") {
-            return true;
-        }
+        if (!filter || filter === "none") { return true }
         if (pizza.pizzaCost >= parseInt(filter.split("_")[0]) && pizza.pizzaCost < parseInt(filter.split("_")[1])) {
             return true;
         }
@@ -46,6 +44,9 @@ export default function Menu() {
 
     return (
         <div className='menu-content'>
+
+            {/* ------------ NavBar ------------ */}
+
             <div className="menu-navigation">
                 <div id="menu-heading"><img src={"/logo192.png"}></img>Yolo's Pizza</div>
                 <div className="menu-navigation-right">
@@ -58,6 +59,8 @@ export default function Menu() {
             </div>
 
             <div className="menu-content-left">
+
+                {/* ------------ Filters by Price, Type, Size ------------ */}
 
                 <div className="menu-filter-pizza">
                     {
@@ -92,6 +95,9 @@ export default function Menu() {
                         </>
                     }
                 </div>
+
+                {/* ------------ Menu Pizza Cards ------------ */}
+
                 <div className='menu-content-cards'>
                     {
                         filteredPizza.map((pizza) => {
@@ -117,6 +123,9 @@ export default function Menu() {
                     }
                 </div>
             </div>
+
+            {/* ------------ Selected Pizza Cart ------------ */}
+
             <div className='menu-cart-list'>
                 {cart.map((pizzaSelected) => {
                     const { pizzaId: id, pizzaType: type, pizzaName: name, pizzaSize: size, pizzaCost: cost } = pizzaSelected;

@@ -15,9 +15,7 @@ export default function Cart() {
     const [discount, setDiscount] = useState(0);
     const { token } = useUser();
     let subTotal = 0;
-    // var couponName = null;
     const [couponName, setCouponName] = useState(null);
-    // const [grandTotal, setGrandTotal] = useState(subTotal);
     let grandTotal = 0;
     let navigate = useNavigate();
 
@@ -37,6 +35,8 @@ export default function Cart() {
 
     return (
         <>
+            {/* ------------ NavBar ------------ */}
+
             <div className="menu-navigation">
                 <div id="menu-heading" onClick={() => navigate("/menu")} style={{ cursor: "pointer" }}><img src={"/logo192.png"}></img>Yolo's Pizza</div>
                 <div className="menu-navigation-right">
@@ -49,6 +49,8 @@ export default function Cart() {
                 </div>
             </div>
             <div className='cart-flex-container'>
+
+                {/* ------------ Selected Pizza Description ------------ */}
 
                 <div className="cart-content">
                     {
@@ -78,6 +80,8 @@ export default function Cart() {
                     }
                 </div>
 
+                {/* ------------ Available Coupons ------------ */}
+
                 {
                     subTotal !== 0 &&
                     <>
@@ -85,6 +89,8 @@ export default function Cart() {
                             <button className='cart-apply-coupon-button' onClick={() => setCheck(!check)}>Select offer / Apply coupon</button>
                             {check &&
                                 <>
+                                    {/* ------------ Fetching coupon API ------------ */}
+
                                     <form onSubmit={(e) => {
                                         e.preventDefault();
                                         const data = new FormData(e.target);
@@ -128,6 +134,8 @@ export default function Cart() {
                             }
                             {check &&
                                 <>
+                                    {/* ------------ Avaialble offers ------------ */}
+
                                     <div className='cart-available-offers'>Available Offers</div>
                                     <div className="cart-available-offers-content">
                                         {coupon.map(coupon => {
@@ -146,7 +154,9 @@ export default function Cart() {
                             }
 
                         </div>
-                        {console.log(couponName)}
+
+                        {/* ------------ Total cost calculation ------------ */}
+
                         <div className="cart-total-content">
                             < div >
                                 <label htmlFor="cart-total-subtotal" id='cart-total-subtotal'>Sub Total</label>
@@ -155,13 +165,14 @@ export default function Cart() {
                                 <div className="cart-total-discount"><FaRupeeSign size={12} />{discount && discount}</div><br />
                                 <label htmlFor="cart-total-grandTotal" id='cart-total-grandTotal'>Grand Total</label>
                                 <div className="cart-total-grandTotal"><FaRupeeSign size={12} />{discount !== 0 ? (grandTotal -= discount) : grandTotal}</div><br />
-                                {/* <button className='cart-button-place-order' onClick={() => { navigate("/payment") }} disabled={subTotal === 0}>Proceed to Payment</button> */}
                                 <button className='cart-button-place-order' disabled={subTotal === 0}><Link to="/payment" id='cart-button-place-order-link' state={{ discount: discount, grandTotal: grandTotal, couponName: couponName }}>Proceed to Payment</Link></button>
                             </div>
                         </div>
                     </>
                 }
                 {
+                    /* ------------ If cart is empty ------------ */
+
                     subTotal === 0 &&
                     <>
                         <div className='cart-empty-cart-container'>
