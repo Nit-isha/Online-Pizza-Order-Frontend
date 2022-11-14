@@ -1,7 +1,10 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import Logout from '../../authentication/Logout';
 import { useUser } from '../../hooks/useUser';
+import '../../styles/UpdatePassword.css';
+
 
 export default function UpdatePassword() {
     let navigate = useNavigate();
@@ -11,8 +14,19 @@ export default function UpdatePassword() {
 
     return (
         <>
-            <div>Update Password</div>
-            <div className="update_pass">
+            <div className="menu-navigation">
+                <div id="menu-heading" onClick={() => navigate("/menu")} style={{ cursor: "pointer" }}><img src={"/logo192.png"}></img>Yolo's Pizza</div>
+                <div className="menu-navigation-right">
+                    <button onClick={() => navigate("/menu")}>Menu</button>
+                    {!token && <button id="menu-login-button" onClick={() => navigate("/login?from=/cart")}>Login</button>}
+                    {!token && <button id="menu-signup-button" onClick={() => navigate("/register")}>Signup</button>}
+                    {token && <button id="menu-orders-button" onClick={() => navigate("/orders")}>Orders</button>}
+                    <Logout />
+                </div>
+            </div>
+           
+            <div className="update-password-container">
+            <div className="Update-Password-Information">Update Password</div>
                 {
                     <form onSubmit={(e) => {
                         e.preventDefault();
@@ -38,20 +52,19 @@ export default function UpdatePassword() {
                     }}
                     >
 
-                        <label htmlFor="pass">New Password</label>
-                        <input type="password" name="pass" id="pass" onChange={(e) => setPassword(e.target.value)} value={password} required />
+                        <label htmlFor="pass" className="Update-Password-label">New Password</label>
+                        <input type="password" name="pass" id="update-password" onChange={(e) => setPassword(e.target.value)} value={password} required Placeholder="Enter New Password"/>
                         <br />
-                        <label htmlFor="conpass">Confirm Password</label>
-                        <input type="password" name="conpass" id="conpass" onChange={(e) => setConfirmPass(e.target.value)} value={confirmPass} required />
+                        <label htmlFor="conpass" className="Update-Password-label">Confirm Password</label>
+                        <input type="password" name="conpass" id="confirm-password" onChange={(e) => setConfirmPass(e.target.value)} value={confirmPass} required Placeholder="Confirm password"/>
                         <br />
                         <p id="check">
                             {
                                 (password && confirmPass && password !== confirmPass) && "Password doesn't match."
                             }
                         </p>
-                        <input type="submit" value="Update" disabled={!password || !confirmPass || password !== confirmPass} />
-                        <br />
-                        <input type="button" value="Back" onClick={() => navigate("/user/about")} />
+                        <input type="submit" value="Update"id="password-submit-button" disabled={!password || !confirmPass || password !== confirmPass} />
+                        
                     </form>
                 }
             </div>

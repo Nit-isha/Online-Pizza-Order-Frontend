@@ -1,0 +1,147 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+SC:wght@500&family=Dancing+Script:wght@700&family=Poppins&display=swap');
+
+.register-container {
+    margin-top: 100px;
+    background-color: white;
+    width: fit-content;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+    padding: 30px;
+    position: relative;
+    top: 0%;
+    left: 32%;
+    width: 35%;
+    height: 70vh;
+    font-family: 'Poppins';
+    font-size: 14px;
+}
+.Register-Page{
+    font-family: 'Poppins';
+    font-size: 20px;
+    color: rgb(114, 98, 185);
+    font-weight: 600;
+    margin-bottom: 20px;
+    border-bottom: 1px solid rgb(83, 71, 136);
+}
+
+/* --------- Details ---------- */
+
+#register-name{
+    font-family: 'Poppins';
+    font-size: 13px;
+    border-radius: 15px;
+    color: rgb(114, 98, 185);
+    margin-bottom: 10px;
+    padding: 2px;
+    margin-left: 100px;
+}
+#register-mobile{
+    font-family: 'Poppins';
+    font-size: 13px;
+    border-radius: 15px;
+    color: rgb(114, 98, 185);
+    margin-bottom: 10px;
+    padding: 2px;
+    margin-left: 95px;
+    
+}
+#register-email{
+    font-family: 'Poppins';
+    font-size: 13px;
+    border-radius: 15px;
+    color: rgb(114, 98, 185);
+    margin-bottom: 10px;
+    padding: 2px;
+    margin-left: 104px;
+    
+}
+#register-address{
+    font-family: 'Poppins';
+    font-size: 13px;
+    border-radius: 15px;
+    color: rgb(114, 98, 185);
+    margin-bottom: 10px;
+    padding: 2px;
+    margin-left: 85px;
+    
+}
+#register-userName{
+    font-family: 'Poppins';
+    font-size: 13px;
+    border-radius: 15px;
+    color: rgb(114, 98, 185);
+    margin-bottom: 10px;
+    padding: 2px;
+    margin-left: 70px;
+    
+}
+#register-password{
+    font-family: 'Poppins';
+    font-size: 13px;
+    border-radius: 15px;
+    color: rgb(114, 98, 185);
+    margin-bottom: 10px;
+    padding: 2px;
+    margin-left: 75px; 
+}
+
+.register-label{
+    font-family: 'Poppins';
+    font-weight: 600;
+    /* margin-left: 40px; */
+    font-size: 14px;
+    margin-bottom: 10px;
+    color: rgb(114, 98, 185);
+}
+register-label:after { content: ": " }
+
+
+#register-signup{
+    padding: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-family: 'Poppins';
+    font-size: 13px;
+    cursor: pointer;
+    margin-right: 10px;
+    color: white;
+    border-color:  transparent;
+    background-color: rgb(114, 98, 185);
+    
+}
+#register-signup:hover {
+    background-color: white;
+    border-color: rgb(114, 98, 185);
+    color: rgb(114, 98, 185);
+    transition: 0.4s all ease;
+}
+
+#register-invalid-error {
+    margin-top: 15px;
+    color: crimson;
+    font-weight: 600;
+}
+#register-have-an-account {
+    margin-top: 20px;
+    color: rgb(16, 70, 16);
+    margin-right: 20px;
+}
+#register-login-button{
+    margin-top: 20px;
+    font-family: 'Poppins';
+    font-size: 13px;
+    cursor: pointer;
+    margin-right: 10px;
+    padding: 5px;
+    padding-left: 20px;
+    border-radius: 20px;
+    padding-right: 20px;
+    color: white;
+    border-color:  transparent;
+    background-color: green;
+}
+#register-login-button:hover {
+    background-color: white;
+    border-color: green;
+    color: green;
+    transition: 0.4s all ease;
+}

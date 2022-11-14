@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+SC:wght@500&family=Dancing+Script:wght@700&family=Poppins&display=swap');
+.login-container {
+    margin-top: 100px;
+    background-color: white;
+    width: fit-content;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+    padding: 30px;
+    position: relative;
+    top: 0%;
+    left: 35%;
+    width: 35%;
+    height: 50vh;
+    font-family: 'Poppins';
+    font-size: 14px;
+}
+.login-page-heading {
+    font-family: 'Poppins';
+    font-size: 21px;
+    color: rgb(114, 98, 185);
+    font-weight: 600;
+    margin-bottom: 20px;
+    border-bottom: 1px solid rgb(83, 71, 136);
+}
+#login-label-username {
+    color: rgb(114, 98, 185);
+    font-weight: 600;
+    font-family: 'Poppins';
+    font-size: 15px;
+    margin-bottom: 15px;
+    padding-right: 50px;
+}
+#login-username {
+    margin-bottom: 15px;
+    padding: 7px;
+    border-radius: 15px;
+    color: rgb(114, 98, 185);
+    padding-left: 5px;
+}
+#login-label-password {
+    color: rgb(114, 98, 185);
+    font-weight: 600;
+    font-family: 'Poppins';
+    font-size: 15px;
+    margin-bottom: 15px;
+    padding-right: 60px;
+}
+#login-password {
+    margin-bottom: 30px;
+    padding: 7px;
+    border-radius: 15px;
+    padding-left: 5px;
+    color: rgb(114, 98, 185);
+}
+#login-submit-button {
+    padding: 10px;
+    font-family: 'Poppins';
+    font-size: 13px;
+    cursor: pointer;
+    width: 100px;
+    margin-right: 10px;
+    color: white;
+    border-color:  transparent;
+    background-color: rgb(114, 98, 185);
+}
+#login-submit-button:hover {
+    background-color: white;
+    border-color: rgb(114, 98, 185);
+    color: rgb(114, 98, 185);
+    transition: 0.4s all ease;
+}
+#login-validate-user-error {
+    margin-bottom: 15px;
+    color: rgb(255, 0, 0);
+    font-weight: 600;
+}
+#login-signup-button {
+    color: rgb(26, 53, 9);
+    margin-top: 20px;
+    margin-right: 10px;
+}
+#login-sign-button {
+    margin-top: 20px;
+    padding: 3px;
+    font-family: 'Poppins';
+    font-size: 13px;
+    cursor: pointer;
+    width: 100px;
+    margin-right: 10px;
+    color: white;
+    border-color:  transparent;
+    background-color: rgb(93, 184, 32);
+    border-radius: 10px;
+}
+#login-sign-button:hover {
+    color: rgb(93, 184, 32);
+    border-color:  rgb(93, 184, 32);
+    background-color: white;
+    transition: 0.4s all ease;
+}
+
