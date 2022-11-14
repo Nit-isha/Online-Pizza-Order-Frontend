@@ -75,11 +75,11 @@
 }
 #login-signup-button {
     color: rgb(26, 53, 9);
-    margin-top: 20px;
+    margin-top: 0px;
     margin-right: 10px;
 }
 #login-sign-button {
-    margin-top: 20px;
+    margin-top: 0px;
     padding: 3px;
     font-family: 'Poppins';
     font-size: 13px;

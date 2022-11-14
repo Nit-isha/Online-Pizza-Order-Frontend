@@ -18,11 +18,12 @@ export default function UpdateUsername() {
                     <button onClick={() => navigate("/menu")}>Menu</button>
                     {!token && <button id="menu-login-button" onClick={() => navigate("/login?from=/cart")}>Login</button>}
                     {!token && <button id="menu-signup-button" onClick={() => navigate("/register")}>Signup</button>}
+                    {token && <button id="menu-profile-button" onClick={() => navigate("/user/about")}>Profile</button>}
                     {token && <button id="menu-orders-button" onClick={() => navigate("/orders")}>Orders</button>}
                     <Logout />
                 </div>
             </div>
-            
+
             <div className="update-uname-container">
                 <div className="Update-Username-Information">Update Username</div>
                 {
@@ -64,10 +65,10 @@ export default function UpdateUsername() {
                         <label htmlFor="username" className="Update-Username-label">Username</label>
                         <input type="text" name="username" id="update-username" required autoFocus Placeholder="Enter Username" />
                         <br />
+                        <p id='update-username-validate-name'>{validateUserName}</p>
 
                         <input type="submit" value="Update" id="username-submit-button" />
-                        
-                        <p id='validateUserName'>{validateUserName}</p>
+
                     </form>
                 }
             </div>
