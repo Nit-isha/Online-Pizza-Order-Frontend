@@ -156,7 +156,7 @@ export default function Cart() {
                                 <label htmlFor="cart-total-grandTotal" id='cart-total-grandTotal'>Grand Total</label>
                                 <div className="cart-total-grandTotal"><FaRupeeSign size={12} />{discount !== 0 ? (grandTotal -= discount) : grandTotal}</div><br />
                                 {/* <button className='cart-button-place-order' onClick={() => { navigate("/payment") }} disabled={subTotal === 0}>Proceed to Payment</button> */}
-                                <button className='cart-button-place-order' disabled={subTotal === 0}><Link to="/payment" state={{ discount: discount, grandTotal: grandTotal, couponName: couponName }}>Proceed to Payment</Link></button>
+                                <button className='cart-button-place-order' disabled={subTotal === 0}><Link to="/payment" id='cart-button-place-order-link' state={{ discount: discount, grandTotal: grandTotal, couponName: couponName }}>Proceed to Payment</Link></button>
                             </div>
                         </div>
                     </>

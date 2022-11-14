@@ -253,7 +253,6 @@
     padding: 8px;
     padding-right: 15px;
     padding-left: 15px;
-    /* background-color: rgb(149, 216, 255); */
     background-color: #9683E9;
     color: white;
     font-weight: 600;
@@ -261,6 +260,23 @@
     border-color: transparent;
     cursor: pointer;
     box-shadow: rgba(178, 248, 245, 0.1) 0px 4px 12px;
+}
+.cart-button-place-order:hover {
+    background-color: white;
+    color: #9683E9;
+    border-color: #9683E9;
+    transition: 0.4s all ease;
+}
+#cart-button-place-order-link {
+    text-decoration: none;
+    color: white;
+    padding: 8px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+#cart-button-place-order-link:hover {
+    transition: 0.4s all ease;
+    color: #9683E9;
 }
 
 
