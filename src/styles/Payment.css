@@ -105,16 +105,16 @@
     font-size: 17px;
     font-family: 'Times New Roman', Times, serif;
 }
-.payment-coupon-name span {
+.payment-discount span {
     font-family: 'Poppins', sans-serif;
     font-size: 15px;
     font-weight: 600;
     color: rgb(9, 84, 155);
     display: inline;
 }
-.payment-coupon-name-value {
+.payment-discount-value {
     display: inline;
-    padding-left: 70px;
+    padding-left: 140px;
     font-size: 16px;
     font-family: 'Times New Roman', Times, serif;
 }

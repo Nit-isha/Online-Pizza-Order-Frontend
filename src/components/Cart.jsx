@@ -15,7 +15,10 @@ export default function Cart() {
     const [discount, setDiscount] = useState(0);
     const { token } = useUser();
     let subTotal = 0;
-    const [grandTotal, setGrandTotal] = useState(subTotal);
+    // var couponName = null;
+    const [couponName, setCouponName] = useState(null);
+    // const [grandTotal, setGrandTotal] = useState(subTotal);
+    let grandTotal = 0;
     let navigate = useNavigate();
 
     useEffect(() => {
@@ -52,6 +55,7 @@ export default function Cart() {
                         cart.map(pizzaList => {
                             const { pizzaId, pizzaType, pizzaName, pizzaSize, pizzaDescription, pizzaCost } = pizzaList;
                             subTotal += pizzaCost;
+                            grandTotal = subTotal;
                             return (
                                 <article key={pizzaId} id="cart-mycart-pizza">
                                     <div className='cart-images'>
@@ -73,6 +77,7 @@ export default function Cart() {
                         })
                     }
                 </div>
+
                 {
                     subTotal !== 0 &&
                     <>
@@ -83,7 +88,7 @@ export default function Cart() {
                                     <form onSubmit={(e) => {
                                         e.preventDefault();
                                         const data = new FormData(e.target);
-
+                                        setCouponName(data.get("couponApplied"));
                                         fetch("http://localhost:9001/coupon/validation", {
                                             method: "POST",
                                             headers: {
@@ -105,7 +110,7 @@ export default function Cart() {
                                             })
                                             .then(res => {
                                                 setDiscount(res);
-                                                setGrandTotal(subTotal - res);
+                                                // grandTotal = subTotal - res;
                                                 if (res === 0) { toast.error("Coupon NOT Applicable.") }
                                                 else { toast.success(`Coupon ${data.get("couponApplied")} applied.`) }
                                             })
@@ -141,6 +146,7 @@ export default function Cart() {
                             }
 
                         </div>
+                        {console.log(couponName)}
                         <div className="cart-total-content">
                             < div >
                                 <label htmlFor="cart-total-subtotal" id='cart-total-subtotal'>Sub Total</label>
@@ -148,9 +154,9 @@ export default function Cart() {
                                 <label htmlFor="cart-total-discount" id='cart-total-discount'>Discount</label>
                                 <div className="cart-total-discount"><FaRupeeSign size={12} />{discount && discount}</div><br />
                                 <label htmlFor="cart-total-grandTotal" id='cart-total-grandTotal'>Grand Total</label>
-                                <div className="cart-total-grandTotal"><FaRupeeSign size={12} />{grandTotal}</div><br />
+                                <div className="cart-total-grandTotal"><FaRupeeSign size={12} />{discount !== 0 ? (grandTotal -= discount) : grandTotal}</div><br />
                                 {/* <button className='cart-button-place-order' onClick={() => { navigate("/payment") }} disabled={subTotal === 0}>Proceed to Payment</button> */}
-                                <button className='cart-button-place-order' disabled={subTotal === 0}><Link to="/payment" state={{disc : discount,gT:grandTotal}}>Proceed to Payment</Link></button>
+                                <button className='cart-button-place-order' disabled={subTotal === 0}><Link to="/payment" state={{ discount: discount, grandTotal: grandTotal, couponName: couponName }}>Proceed to Payment</Link></button>
                             </div>
                         </div>
                     </>

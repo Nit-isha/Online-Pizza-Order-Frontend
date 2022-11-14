@@ -15,10 +15,12 @@ export default function Payment({ props }) {
     const { token } = useUser()
     let navigate = useNavigate();
     const location = useLocation();
-    const {disc,gT}= location.state;
+    const { discount, grandTotal, couponName } = location.state;
     const [transactionMode, setTransactionMode] = useState("Cash On Delivery");
     const [orderType, setOrderType] = useState("Home Delivery");
     let subTotal = 0;
+
+    console.log(couponName);
 
     cart.map(pizza => { subTotal += pizza.pizzaCost });
     function confirmOrder() {
@@ -32,7 +34,7 @@ export default function Payment({ props }) {
             body: JSON.stringify({
                 "transactionMode": transactionMode,
                 "orderType": orderType,
-                // "couponName": "null",
+                "couponName": couponName,
                 "pizzaList": cart
             })
         })
@@ -99,18 +101,18 @@ export default function Payment({ props }) {
                                 <FaRupeeSign size={13} />{subTotal}
                             </div>
                         </div>
-                        <div className="payment-coupon-name">
-                            <span>Coupon Applied</span>
-                            <div className='payment-coupon-name-value'>
-                                {/* {props.discount} */}
-                                PIZZA50
+                        <div className="payment-discount">
+                            <span>Discount</span>
+                            <div className='payment-discount-value'>
+                                <FaRupeeSign size={13} />
+                                {discount}
                             </div>
                         </div>
                         <div className="payment-grand-total-cost">
                             <span>Grand Total</span>
                             <div className='payment-grand-total-value'>
                                 <FaRupeeSign size={13} />
-                                {subTotal}
+                                {grandTotal}
                             </div>
                         </div>
                         <button type='submit' className='payment-place-order-button' onClick={confirmOrder}>Confirm Order</button>
@@ -149,7 +151,13 @@ export default function Payment({ props }) {
                         <div className="payment-quantity">
                             <span>Quantity</span>
                             <div className='payment-quantity-value'>
-                                {cart.length + 1} pizza
+                                {cart.length} pizza
+                            </div>
+                        </div>
+                        <div className="payment-quantity">
+                            <span>Coupon Name</span>
+                            <div className='payment-quantity-value'>
+                                {couponName}
                             </div>
                         </div>
                         <div className="payment-total-cost">
@@ -158,18 +166,18 @@ export default function Payment({ props }) {
                                 <FaRupeeSign size={13} />{subTotal}
                             </div>
                         </div>
-                        <div className="payment-coupon-name">
-                            <span>Coupon Applied</span>
-                            <div className='payment-coupon-name-value'>
-                                {/* {props.discount} */}
-                                {disc}
+                        <div className="payment-discount">
+                            <span>Discount</span>
+                            <div className='payment-discount-value'>
+                                <FaRupeeSign size={13} />
+                                {discount}
                             </div>
                         </div>
                         <div className="payment-grand-total-cost">
                             <span>Grand Total</span>
                             <div className='payment-grand-total-value'>
                                 <FaRupeeSign size={13} />
-                                {gT}
+                                {grandTotal}
                             </div>
                         </div>
                         <button type='submit' className='payment-place-order-button' disabled="true">Confirm Order</button>
