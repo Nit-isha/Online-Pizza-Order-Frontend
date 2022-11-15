@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useUser } from "../hooks/useUser";
 import Logout from './Logout';
 import "../styles/Register.css";
+import { toast } from 'react-toastify';
 
 export default function Register() {
     const { token } = useUser();
@@ -56,6 +57,7 @@ export default function Register() {
                                     if (res.ok) {
                                         console.log(res);
                                         navigate("/login");
+                                        toast.success("Successfully Registered!");
                                     }
                                     else {
                                         const error = await res.json();

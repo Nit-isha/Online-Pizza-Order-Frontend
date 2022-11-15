@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { useUser } from "../hooks/useUser";
 import "../styles/Login.css";
 
@@ -52,6 +53,7 @@ export default function Login() {
                                 }
                                 else {
                                     return res.json();
+
                                 }
                             })
                             .then(res => {
@@ -61,6 +63,7 @@ export default function Login() {
                                     return;
                                 }
                                 navigate("/menu");
+                                toast.success("Successfully Logged In!")
                             }).catch(err => setValidateUser(err.message))
 
                     }}>
