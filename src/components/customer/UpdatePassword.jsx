@@ -54,10 +54,30 @@ export default function UpdatePassword() {
                     >
 
                         <label htmlFor="pass" className="Update-Password-label">New Password</label>
-                        <input type="password" name="pass" id="update-password" onChange={(e) => setPassword(e.target.value)} value={password} required Placeholder="Enter New Password" />
+                        <input
+                            type="password"
+                            name="pass"
+                            id="update-password"
+                            onChange={(e) => setPassword(e.target.value)}
+                            value={password}
+                            required
+                            Placeholder="Enter New Password"
+                            pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
+                            title='Must contain atleast: 1 uppercase, 1 lowercase, 1 number, 1 symbol and 8 letters.'
+                        />
                         <br />
                         <label htmlFor="conpass" className="Update-Password-label">Confirm Password</label>
-                        <input type="password" name="conpass" id="confirm-password" onChange={(e) => setConfirmPass(e.target.value)} value={confirmPass} required Placeholder="Confirm password" />
+                        <input
+                            type="password"
+                            name="conpass"
+                            id="confirm-password"
+                            onChange={(e) => setConfirmPass(e.target.value)}
+                            value={confirmPass}
+                            required
+                            Placeholder="Confirm password"
+                            pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
+                            title='Must contain atleast: 1 uppercase, 1 lowercase, 1 number, 1 symbol and 8 letters.'
+                        />
                         <br />
                         <p id="check">
                             {

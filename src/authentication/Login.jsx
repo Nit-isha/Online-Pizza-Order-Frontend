@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import { useUser } from "../hooks/useUser";
 import "../styles/Login.css";
@@ -9,6 +9,12 @@ export default function Login() {
     let navigate = useNavigate();
     const location = useLocation();
     const [searchParam] = useSearchParams();
+
+    useEffect(() => {
+        if (token) {
+            navigate("/menu");   //Redirecting to Menu page if already logged in
+        }
+    }, [token])
 
     return (
         <>
@@ -76,10 +82,7 @@ export default function Login() {
                         <input type="button" value="Signup" id="login-sign-button" onClick={() => navigate("/register")} />
                     </form>
                 }
-
             </div >
-            {/* ------------ Redirecting to Menu page if already logged in ------------ */}
-            {token && navigate("/menu")}
         </>
     )
 }

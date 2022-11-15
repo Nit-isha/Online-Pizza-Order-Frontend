@@ -8,7 +8,7 @@ import { FaRupeeSign, FaAddressBook } from 'react-icons/fa';
 import { IoCall } from 'react-icons/io5';
 import '../styles/Payment.css';
 import Logout from '../authentication/Logout';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setCouponName, setDiscount } from '../redux/paymentSlice';
 
 export default function Payment({ props }) {
@@ -22,6 +22,7 @@ export default function Payment({ props }) {
     const [orderType, setOrderType] = useState("Home Delivery");
     const discount = useSelector((state) => state.payment.discount);
     const couponName = useSelector((state) => state.payment.couponName);
+    const dispatch = useDispatch();
     let subTotal = 0;
 
     /* ------------ Function for ordering pizza ------------ */
@@ -44,7 +45,12 @@ export default function Payment({ props }) {
         })
             .then(() => toast.success("Order Placed Succesfully"))
             .then(() => localStorage.removeItem("cart"))
-            .then(() => navigate("/menu"))
+            .then(() => {
+                navigate("/menu");
+                dispatch(setCouponName(null));
+                dispatch(setDiscount(0));
+            })
+
     }
 
     return (
