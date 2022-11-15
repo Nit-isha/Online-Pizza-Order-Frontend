@@ -8,6 +8,8 @@ import { FaRupeeSign, FaAddressBook } from 'react-icons/fa';
 import { IoCall } from 'react-icons/io5';
 import '../styles/Payment.css';
 import Logout from '../authentication/Logout';
+import { useDispatch, useSelector } from 'react-redux';
+import { setCouponName, setDiscount } from '../redux/paymentSlice';
 
 export default function Payment({ props }) {
     const [cart, setCart] = useLocalStorage("cart", []);
@@ -15,12 +17,15 @@ export default function Payment({ props }) {
     const { token } = useUser()
     let navigate = useNavigate();
     const location = useLocation();
-    const { discount, grandTotal, couponName } = location.state;
+    // const { discount, grandTotal, couponName } = location.state;
     const [transactionMode, setTransactionMode] = useState("Cash On Delivery");
     const [orderType, setOrderType] = useState("Home Delivery");
+    const discount = useSelector((state) => state.payment.discount);
+    const couponName = useSelector((state) => state.payment.couponName);
+    const dispatch = useDispatch();
     let subTotal = 0;
 
-    console.log(couponName);
+    /* ------------ Function for ordering pizza ------------ */
 
     cart.map(pizza => { subTotal += pizza.pizzaCost });
     function confirmOrder() {
@@ -40,11 +45,17 @@ export default function Payment({ props }) {
         })
             .then(() => toast.success("Order Placed Succesfully"))
             .then(() => localStorage.removeItem("cart"))
-            .then(() => navigate("/menu"))
+            .then(() => {
+                navigate("/menu");
+                dispatch(setCouponName(null));
+                dispatch(setDiscount(0));
+            })
+
     }
 
     return (
         <>
+            {/* ------------ NavBar ------------ */}
             <div className="menu-navigation">
                 <div id="menu-heading" onClick={() => navigate("/menu")} style={{ cursor: "pointer" }}><img src={"/logo192.png"}></img>Yolo's Pizza</div>
                 <div className="menu-navigation-right">
@@ -57,10 +68,16 @@ export default function Payment({ props }) {
                     <Logout />
                 </div>
             </div>
+
+            {/* ----------- Confirmation Page ----------- */}
+
             {cart.length !== 0 && <div className='payment-container'>
 
                 {token && cart.length !== 0 &&
                     <div className='payment-logged-in-container'>
+
+                        {/* ----------- User address and mobile no. ----------- */}
+
                         <div className="payment-greet-customer-name">Hello {info?.customerName}!! &#128516;</div>
                         <div className="payment-customer-address">
                             <span>Delivery Address</span><br />
@@ -70,6 +87,9 @@ export default function Payment({ props }) {
                                 <button className='payment-update-customer-address' onClick={() => navigate("/user/update")}>Update Address</button> <br />
                             </div>
                         </div>
+
+                        {/* ----------- Selecting Mode and Order type ----------- */}
+
                         <div className="payment-transaction-mode">
                             <span>Transaction Mode </span><br />
                             <select name="transactionMode" id="transactionMode" onChange={(e) => setTransactionMode(e.target.value)}>
@@ -89,6 +109,9 @@ export default function Payment({ props }) {
                                 <option value="Table Ordering">Table Ordering</option>
                             </select>
                         </div>
+
+                        {/* ----------- Final total amount billin ----------- */}
+
                         <div className="payment-quantity">
                             <span>Quantity</span>
                             <div className='payment-quantity-value'>
@@ -112,7 +135,8 @@ export default function Payment({ props }) {
                             <span>Grand Total</span>
                             <div className='payment-grand-total-value'>
                                 <FaRupeeSign size={13} />
-                                {grandTotal}
+                                {/* {grandTotal} */}
+                                {subTotal - discount}
                             </div>
                         </div>
                         <button type='submit' className='payment-place-order-button' onClick={confirmOrder}>Confirm Order</button>
@@ -120,7 +144,8 @@ export default function Payment({ props }) {
                 }
                 {!token &&
                     <div>
-                        {/* <button id="backToCart" onClick={() => navigate("/cart")}>Back to Cart</button> */}
+                        {/* ----------- Login Button if not logged in ----------- */}
+
                         <div className="payment-greet-customer-name">Hey there! &#128516;</div>
                         <div className="payment-customer-address">
                             <span>Delivery Address</span> <br />
@@ -177,7 +202,7 @@ export default function Payment({ props }) {
                             <span>Grand Total</span>
                             <div className='payment-grand-total-value'>
                                 <FaRupeeSign size={13} />
-                                {grandTotal}
+                                {subTotal - discount}
                             </div>
                         </div>
                         <button type='submit' className='payment-place-order-button' disabled="true">Confirm Order</button>
@@ -185,6 +210,7 @@ export default function Payment({ props }) {
                 }
             </div>}
             {
+                /* ------------- If Cart is Empty ------------ */
                 subTotal === 0 &&
                 <>
                     <div className='cart-empty-cart-container'>

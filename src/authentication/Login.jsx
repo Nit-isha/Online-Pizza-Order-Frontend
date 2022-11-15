@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import { useUser } from "../hooks/useUser";
 import "../styles/Login.css";
@@ -7,12 +7,19 @@ export default function Login() {
     const { token, login } = useUser();
     const [validateUser, setValidateUser] = useState();
     let navigate = useNavigate();
-
     const location = useLocation();
     const [searchParam] = useSearchParams();
 
+    useEffect(() => {
+        if (token) {
+            navigate("/menu");   //Redirecting to Menu page if already logged in
+        }
+    }, [token])
+
     return (
         <>
+            {/* ------------ NavBar ------------ */}
+
             <div className="menu-navigation">
                 <div id="menu-heading" onClick={() => navigate("/menu")} style={{ cursor: "pointer" }}><img src={"/logo192.png"}></img>Yolo's Pizza</div>
                 <div className="menu-navigation-right">
@@ -20,6 +27,9 @@ export default function Login() {
                     {!token && <button id="menu-signup-button" onClick={() => navigate("/register")}>Signup</button>}
                 </div>
             </div>
+
+            {/* ------------ Fetching login API ------------ */}
+
             <div className="login-container">
                 {!token &&
                     <form onSubmit={(e) => {
@@ -54,6 +64,9 @@ export default function Login() {
                             }).catch(err => setValidateUser(err.message))
 
                     }}>
+
+                        {/* ------------ Login credentials ------------ */}
+
                         <div className='login-page-heading'>Login</div>
                         <label htmlFor="userName" id="login-label-username" >User Name</label>
                         <input type="text" name="userName" id="login-username" required autoFocus placeholder='username' />
@@ -69,7 +82,6 @@ export default function Login() {
                         <input type="button" value="Signup" id="login-sign-button" onClick={() => navigate("/register")} />
                     </form>
                 }
-                {token && navigate("/menu")}
             </div >
         </>
     )

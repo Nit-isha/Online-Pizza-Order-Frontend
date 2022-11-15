@@ -207,42 +207,36 @@
     width: 70%;
 }
 #cart-total-subtotal {
-    /* font-weight: 600; */
     padding-top: 10px;
     font-size: 17px;
     display: inline;
     font-family: 'Poppins', sans-serif;
 }
 .cart-total-subtotal {
-    /* font-weight: 600; */
     font-family: 'Poppins', sans-serif;
     font-size: 15px;
     margin-left: 150px;
     display: inline;
 }
 #cart-total-discount {
-    /* font-weight: 600; */
     padding-top: 10px;
     font-size: 17px;
     display: inline;
     font-family: 'Poppins', sans-serif;
 }
 .cart-total-discount {
-    /* font-weight: 600; */
     font-family: 'Poppins', sans-serif;
     font-size: 15px;
-    margin-left: 165px;
+    margin-left: 155px;
     display: inline;
 }
 #cart-total-grandTotal {
-    /* font-weight: 600; */
     padding-top: 10px;
     font-size: 17px;
     display: inline;
     font-family: 'Poppins', sans-serif;
 }
 .cart-total-grandTotal {
-    /* font-weight: 600; */
     font-family: 'Poppins', sans-serif;
     font-size: 15px;
     margin-left: 130px;

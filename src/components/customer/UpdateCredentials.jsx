@@ -19,12 +19,13 @@ export default function Update() {
                 <div className="menu-navigation-right">
                     <button onClick={() => navigate("/menu")}>Menu</button>
                     {!token && <button id="menu-login-button" onClick={() => navigate("/login?from=/cart")}>Login</button>}
+                    {token && <button id="menu-profile-button" onClick={() => navigate("/user/about")}>Profile</button>}
                     {!token && <button id="menu-signup-button" onClick={() => navigate("/register")}>Signup</button>}
                     {token && <button id="menu-orders-button" onClick={() => navigate("/orders")}>Orders</button>}
                     <Logout />
                 </div>
             </div>
-           
+
             <div className="update-container">
                 <div className="Update-Personal-Information">Update Credentials</div>
                 {
@@ -52,20 +53,20 @@ export default function Update() {
                     }}>
 
                         <label htmlFor="name" className="Update-credentials-label">Name</label>
-                        <input type="text" name="name" id="update-credentials-name" defaultValue={info?.customerName} required autoFocus Placeholder="Enter name"/>
+                        <input type="text" name="name" id="update-credentials-name" defaultValue={info?.customerName} required autoFocus Placeholder="Enter name" />
                         <br />
                         <label htmlFor="mobile" className="Update-credentials-label">Mobile</label>
-                        <input type="tel" name="mobile" id="update-credentials-mobile" defaultValue={info?.customerMobile} pattern="[6-9][0-9]{9}" required Placeholder="Enter mobile no"/>
+                        <input type="tel" name="mobile" id="update-credentials-mobile" defaultValue={info?.customerMobile} pattern="[6-9][0-9]{9}" required Placeholder="Enter mobile no" />
                         <br />
                         <label htmlFor="email" className="Update-credentials-label">Email</label>
-                        <input type="email" name="email" id="update-credentials-email" defaultValue={info?.customerEmail} required Placeholder="Enter email"/>
+                        <input type="email" name="email" id="update-credentials-email" defaultValue={info?.customerEmail} required Placeholder="Enter email" />
                         <br />
                         <label htmlFor="address" className="Update-credentials-label">Address</label>
-                        <input type="text" name="address" id="update-credentials-address" defaultValue={info?.customerAddress} required Placeholder="Enter address"/>
+                        <input type="text" name="address" id="update-credentials-address" defaultValue={info?.customerAddress} required Placeholder="Enter address" />
                         <br />
-                        <input type="submit" value="Update" id="update-credentials-Update"/>
-                       
-                       
+                        <input type="submit" value="Update" id="update-credentials-Update" />
+
+
                     </form>
                 }
             </div>

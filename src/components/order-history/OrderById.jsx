@@ -83,8 +83,8 @@ export default function OrderById() {
                         {time && <button className='orders-by-id-cancel-button' onClick={() => {
                             cancelOrder(bookingOrderId);
                             navigate("/orders");
-                            window.location.reload(false);
-                            toast.success("Order Cancelled Successfully.");
+                            // window.location.reload(false);
+                            // toast.success("Order Cancelled Successfully.");
                         }}>Cancel Order</button>}
 
                         <div className="orders-by-id-booking-id"><span id='orders-by-id-span-heading'>Booking Id:</span> {bookingOrderId}</div>

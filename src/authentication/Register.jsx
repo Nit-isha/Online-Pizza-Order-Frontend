@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useUser } from "../hooks/useUser";
 import Logout from './Logout';
@@ -9,8 +9,16 @@ export default function Register() {
     const [error, setError] = useState();
     let navigate = useNavigate();
 
+    useEffect(() => {
+        if (token) {
+            navigate("/menu");   //Redirecting to Menu page if already logged in
+        }
+    }, [token])
+
     return (
         <>
+            {/* ------------ NavBar ------------ */}
+
             <div className="menu-navigation">
                 <div id="menu-heading" onClick={() => navigate("/menu")} style={{ cursor: "pointer" }}><img src={"/logo192.png"}></img>Yolo's Pizza</div>
                 <div className="menu-navigation-right">
@@ -19,6 +27,9 @@ export default function Register() {
                     {token && <button id="menu-orders-button" onClick={() => navigate("/orders")}>Orders</button>}
                 </div>
             </div>
+
+            {/* ------------ Fetching register API ------------ */}
+
             <div className="register-container">
                 <div className="Register-Page">Register</div>
                 {!token &&
@@ -54,6 +65,9 @@ export default function Register() {
                                 .catch(err => setError(err.message));
                         }}
                     >
+
+                        {/* ------------ Register credentials ------------ */}
+
                         <label htmlFor="name" className="register-label">Name</label>
                         <input type="text" name="name" id="register-name" required autoFocus Placeholder="enter name" />
                         <br />
@@ -65,10 +79,19 @@ export default function Register() {
                             pattern="[6-9][0-9]{9}"
                             required
                             Placeholder="enter mobile"
+                            title='Mobile no. must contain 10 digits and starts with 6,7,8 or 9.'
                         />
                         <br />
                         <label htmlFor="email" className="register-label">Email</label>
-                        <input type="email" name="email" id="register-email" required Placeholder="enter email" />
+                        <input
+                            type="text"
+                            name="email"
+                            id="register-email"
+                            required
+                            Placeholder="enter email"
+                            pattern='^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$'
+                            title='Must be in the format abc@gmail.com'
+                        />
                         <br />
                         <label htmlFor="address" className="register-label" >Address</label>
                         <input type="text" name="address" id="register-address" required Placeholder="enter address" />
@@ -77,7 +100,15 @@ export default function Register() {
                         <input type="text" name="userName" id="register-userName" required Placeholder="enter username" />
                         <br />
                         <label htmlFor="password" className='register-label'>Password</label>
-                        <input type="password" name="password" id="register-password" required Placeholder="enter password" />
+                        <input
+                            type="password"
+                            name="password"
+                            id="register-password"
+                            required
+                            Placeholder="enter password"
+                            pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
+                            title='Must contain atleast: 1 uppercase, 1 lowercase, 1 number, 1 symbol and 8 letters.'
+                        />
                         <br />
                         <input type="submit" value="Signup" id="register-signup" />
                         <br />
@@ -92,7 +123,11 @@ export default function Register() {
                         />
                     </form>
                 }
+
             </div>
+            {/* ------------ Redirecting to Menu page if already logged in ------------ */}
+
+            {token && navigate("/menu")}
         </>
     )
 }

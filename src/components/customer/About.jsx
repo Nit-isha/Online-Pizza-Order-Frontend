@@ -13,6 +13,8 @@ export default function About() {
 
     return (
         <>
+            {/* ------------ NavBar ------------ */}
+
             <div className="menu-navigation">
                 <div id="menu-heading" onClick={() => navigate("/menu")} style={{ cursor: "pointer" }}><img src={"/logo192.png"}></img>Yolo's Pizza</div>
                 <div className="menu-navigation-right">
@@ -23,6 +25,9 @@ export default function About() {
                     <Logout />
                 </div>
             </div>
+
+            {/* ------------ About ------------ */}
+
             <div className='about-container'>
                 <div className="about-personal-details-heading">Personal Details</div>
                 {token &&
@@ -43,6 +48,8 @@ export default function About() {
                     })()
                 }
             </div>
+
+            {/* ------------ Redirecting to Menu page if already logged in ------------ */}
             {!token && navigate("/menu")}
         </>
     )
