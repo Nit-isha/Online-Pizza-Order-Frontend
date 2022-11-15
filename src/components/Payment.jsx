@@ -92,7 +92,7 @@ export default function Payment({ props }) {
                         <div className="payment-quantity">
                             <span>Quantity</span>
                             <div className='payment-quantity-value'>
-                                {cart.length + 1} pizza
+                                {cart.length} pizza
                             </div>
                         </div>
                         <div className="payment-total-cost">
