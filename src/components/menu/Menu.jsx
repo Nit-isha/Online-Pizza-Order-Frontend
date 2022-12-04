@@ -12,11 +12,11 @@ export default function Menu() {
     const [filter, setFilter] = useState();
     const [filterType, setFilterType] = useState();
     const [filterSize, setFilterSize] = useState();
-    const { token } = useUser();
+    const { token, url } = useUser();
     let navigate = useNavigate();
 
     useEffect(() => {
-        fetch("http://localhost:9001/menu", { method: "GET" })
+        fetch(`${url}/menu`, { method: "GET" })
             .then((res) => res.json())
             .then((json) => { setmenu(json) })
     }, [])

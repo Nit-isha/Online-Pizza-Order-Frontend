@@ -14,7 +14,7 @@ import { setCouponName, setDiscount } from '../redux/paymentSlice';
 export default function Payment({ props }) {
     const [cart, setCart] = useLocalStorage("cart", []);
     const info = useUserInfo();
-    const { token } = useUser()
+    const { token, url } = useUser()
     let navigate = useNavigate();
     const location = useLocation();
     // const { discount, grandTotal, couponName } = location.state;
@@ -29,7 +29,7 @@ export default function Payment({ props }) {
 
     cart.map(pizza => { subTotal += pizza.pizzaCost });
     function confirmOrder() {
-        fetch("http://localhost:9001/orders/neworder", {
+        fetch(`${url}/orders/neworder`, {
             method: "POST",
             headers: {
                 "content-type": "application/json",
@@ -205,7 +205,7 @@ export default function Payment({ props }) {
                                 {subTotal - discount}
                             </div>
                         </div>
-                        <button type='submit' className='payment-place-order-button' disabled="true">Confirm Order</button>
+                        <button type='submit' className='payment-place-order-button' disabled="true" onClick={() => toast.error("Login to continue")}>Confirm Order</button>
                     </div>
                 }
             </div>}

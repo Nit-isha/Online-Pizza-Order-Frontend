@@ -18,11 +18,11 @@ export default function Cart() {
     const couponName = useSelector((state) => state.payment.couponName);
     const dispatch = useDispatch();
     let navigate = useNavigate();
-    const { token } = useUser();
+    const { token, url } = useUser();
     let subTotal = 0;
 
     useEffect(() => {
-        fetch("http://localhost:9001/coupon", { method: "GET" })
+        fetch(`${url}/coupon`, { method: "GET" })
             .then(res => res.json())
             .then(json => setCoupon(json))
     }, [])
@@ -98,7 +98,7 @@ export default function Cart() {
                                         const data = new FormData(e.target);
                                         dispatch(setCouponName(data.get("couponApplied")));
 
-                                        fetch("http://localhost:9001/coupon/validation", {
+                                        fetch(`${url}/coupon/validation`, {
                                             method: "POST",
                                             headers: {
                                                 "content-type": "application/json",

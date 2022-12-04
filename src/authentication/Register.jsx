@@ -6,7 +6,7 @@ import "../styles/Register.css";
 import { toast } from 'react-toastify';
 
 export default function Register() {
-    const { token } = useUser();
+    const { token, url } = useUser();
     const [error, setError] = useState();
     let navigate = useNavigate();
 
@@ -39,7 +39,7 @@ export default function Register() {
                             e.preventDefault();
                             const data = new FormData(e.target); //Create actual data from form element
 
-                            fetch("http://localhost:9001/register", {
+                            fetch(`${url}/register`, {
                                 method: "POST",
                                 body: JSON.stringify({
                                     customerName: data.get("name"),

@@ -8,7 +8,7 @@ import '../../styles/UpdatePassword.css';
 
 export default function UpdatePassword() {
     let navigate = useNavigate();
-    const { token } = useUser();
+    const { token, url } = useUser();
     const [password, setPassword] = useState("");
     const [confirmPass, setConfirmPass] = useState("");
 
@@ -35,7 +35,7 @@ export default function UpdatePassword() {
 
                         if (data.get("pass") === data.get("conpass")) {
 
-                            fetch("http://localhost:9001/customer/update_pass", {
+                            fetch(`${url}/customer/update_pass`, {
                                 method: "PUT",
                                 headers: {
                                     "content-type": "application/json",

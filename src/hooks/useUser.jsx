@@ -14,9 +14,10 @@ export const UserProvider = ({ children }) => {
         setToken(null);
         localStorage.removeItem("token");
     }
+    const url = "http://localhost:9001";
 
     return (
-        <userContext.Provider value={{ token, setToken, login, logout }}>
+        <userContext.Provider value={{ token, setToken, login, logout, url }}>
             {children}
         </userContext.Provider>
     )

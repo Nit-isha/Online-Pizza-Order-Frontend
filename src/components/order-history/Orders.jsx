@@ -8,11 +8,11 @@ import Menu from '../menu/Menu';
 
 export default function Orders() {
     const [orders, setOrders] = useState([]);
-    const { token } = useUser();
+    const { token, url } = useUser();
     const navigate = useNavigate();
 
     useEffect(() => {
-        fetch("http://localhost:9001/orders", {
+        fetch(`${url}/orders`, {
             method: "GET",
             headers: {
                 "content-type": "application/json",

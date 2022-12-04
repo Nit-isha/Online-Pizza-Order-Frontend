@@ -5,7 +5,7 @@ import { useUser } from "../hooks/useUser";
 import "../styles/Login.css";
 
 export default function Login() {
-    const { token, login } = useUser();
+    const { token, login, url } = useUser();
     const [validateUser, setValidateUser] = useState();
     let navigate = useNavigate();
     const location = useLocation();
@@ -37,7 +37,7 @@ export default function Login() {
                         e.preventDefault();
                         const data = new FormData(e.target);   //Create actual data from form element
 
-                        fetch("http://localhost:9001/login", {
+                        fetch(`${url}/login`, {
                             method: "POST",
                             body: JSON.stringify({
                                 username: data.get("userName"),

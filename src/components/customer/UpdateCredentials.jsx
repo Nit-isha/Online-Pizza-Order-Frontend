@@ -9,7 +9,7 @@ import '../../styles/UpdateCredentials.css';
 
 export default function Update() {
     let navigate = useNavigate();
-    const { token } = useUser();
+    const { token, url } = useUser();
     const info = useUserInfo();
 
     return (
@@ -33,7 +33,7 @@ export default function Update() {
                         e.preventDefault();
                         const data = new FormData(e.target);
 
-                        fetch("http://localhost:9001/customer/updateDetails", {
+                        fetch(`${url}/customer/updateDetails`, {
                             method: "PUT",
                             headers: {
                                 "content-type": "application/json",

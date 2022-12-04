@@ -7,7 +7,7 @@ import '../../styles/UpdateUsername.css';
 
 export default function UpdateUsername() {
     let navigate = useNavigate();
-    const { token, logout } = useUser();
+    const { token, logout, url } = useUser();
     const [validateUserName, setValidateUserName] = useState();
 
     return (
@@ -31,7 +31,7 @@ export default function UpdateUsername() {
                         e.preventDefault();
                         const data = new FormData(e.target);
 
-                        fetch("http://localhost:9001/customer/update_uname", {
+                        fetch(`${url}/customer/update_uname`, {
                             method: "PUT",
                             headers: {
                                 "content-type": "application/json",

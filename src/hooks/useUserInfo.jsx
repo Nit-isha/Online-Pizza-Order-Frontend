@@ -3,10 +3,10 @@ import { useUser } from "./useUser";
 
 export default function useUserInfo() {
     const [userInfo, setUserInfo] = useState({});
-    const { token } = useUser();
+    const { token, url } = useUser();
 
     useEffect(() => {
-        fetch("http://localhost:9001/customer/about", {
+        fetch(`${url}/customer/about`, {
             method: "GET",
             headers: {
                 "Authorization": "Bearer " + token

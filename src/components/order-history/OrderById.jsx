@@ -11,12 +11,12 @@ import Menu from '../menu/Menu';
 
 export default function OrderById() {
     const { orderId } = useParams();
-    const { token } = useUser();
+    const { token, url } = useUser();
     const [order, setOrder] = useState({});
     const navigate = useNavigate();
 
     useEffect(() => {
-        fetch(`http://localhost:9001/orders/${orderId}`, {
+        fetch(`${url}/orders/${orderId}`, {
             method: "GET",
             headers: {
                 "content-type": "application/json",
@@ -40,7 +40,7 @@ export default function OrderById() {
     }, [])
 
     const cancelOrder = (id) => {
-        fetch(`http://localhost:9001/orders/${id}`, {
+        fetch(`${url}/orders/${id}`, {
             method: "DELETE",
             headers: {
                 "content-type": "application/json",
